@@ -2,7 +2,7 @@ package hackaton.model;
 
 import javax.persistence.Id;
 
-class Type {
+public class Type {
 
     @Id
     private String name;
