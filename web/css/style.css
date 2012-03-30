@@ -8,8 +8,9 @@ div#container {
     color: #222222;
     border-left: 1px solid #ACE;
     border-right: 1px solid #ACE;
+    border-bottom: 1px solid #ACE;
     min-height: 100%;
-    
+
 }
 
 div#header {
@@ -21,19 +22,127 @@ div#header {
 
 div#header div#logo {    
     background: url('../graphics/task_master.png') transparent center center no-repeat;
-    width: 334px;
-    height: 66px;
-    margin-top: 7px;
+    width: 398px;
+    height: 64px;
+    display: inline-block;
+}
+
+div#header div#logo a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+div#header div#login-box {
+    padding: 10px 5px 10px 15px;
+    width: 270px;
+    float: right;
+    background-color: #d5eaff;
+    border: 1px solid #E9F4FF;
+    border-radius: 10px 10px 10px 10px;
+}
+
+div#header div#login-box a {
+    float: right;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('../graphics/logout.png') transparent center center no-repeat;
+}
+
+div#main-menu {
+    width: 100%;
+    height: 32px;
+    background-color: #5FB1E1;
+    padding: 5px 0px;
+}
+
+div#main-menu ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+div#main-menu ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 25px;
+}
+
+div#main-menu ul li a,
+div#main-menu ul li a:visited,
+div#main-menu ul li a:hover,
+div#main-menu ul li a:active, 
+div#main-menu ul li a:link {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+    
+}
+
+div#main-menu ul li a.icon {
+    padding-left: 36px;
+}
+
+
+div#main-menu ul li a.icon#icon-user {
+    background: url('../graphics/icons/user.png') transparent left bottom no-repeat;
+}
+
+div#main-menu ul li a.icon#icon-all-tasks {
+    background: url('../graphics/icons/tasks.png') transparent left bottom no-repeat;
+}
+
+div#main-menu ul li a.icon#icon-new-tasks {
+    background: url('../graphics/icons/new_task.png') transparent left bottom no-repeat;
+}
+
+div#main-menu ul li a.icon#icon-my-tasks {
+    background: url('../graphics/icons/my_tasks.png') transparent left bottom no-repeat;
+}
+
+div#main-menu ul li a.icon#icon-tag {
+    background: url('../graphics/icons/tag.png') transparent left bottom no-repeat;
 }
 
 div#body {
-    min-height: 800px;
+    min-height: 500px;
     padding: 18px 24px;
 }
 
 div#footer {
-    height: 70px;
-    padding: 18px 24px;    
+    height: 35px;
+    padding: 10px 24px;    
     background-color: #F4FAFF;
     border-top: 1px solid #E9F4FF;
+}
+
+div#footer div#flags {
+    float: left;
+    display: none;
+}
+
+div#footer div#flags a.flag  {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+div#footer div#flags a.flag#cs {
+    background: url('../graphics/flags/flag_cs.png') transparent center center no-repeat;
+}
+
+div#footer div#flags a.flag#en {
+    background: url('../graphics/flags/flag_gb.png') transparent center center no-repeat;
+}
+
+
+div#footer div#copyright {
+    float: right;
+    margin-top: 10px;
 }
