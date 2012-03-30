@@ -1,17 +1,6 @@
-<%-- 
-    Document   : index
-    Created on : Mar 30, 2012, 6:50:13 PM
-    Author     : Tomáš Čerevka <tomas@cerevka.cz>
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
+
+<my:layout title="Homepage">
+    Content
+</my:layout>
