@@ -1,5 +1,7 @@
 package hackaton.model;
 
-public class DAOImpl implements DAO {
+import com.googlecode.objectify.util.DAOBase;
+
+public class DAOImpl extends DAOBase implements DAO {
     
 }
