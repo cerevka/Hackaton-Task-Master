@@ -16,7 +16,7 @@ public class LoginController {
     public User getUser() {
         UserService userService = UserServiceFactory.getUserService();
         com.google.appengine.api.users.User user = userService.getCurrentUser();
-        return null//dao.getUser(user.getEmail());
+        return null;//dao.getUser(user.getEmail());
     }
     
 }
