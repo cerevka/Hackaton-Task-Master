@@ -1,0 +1,39 @@
+body {
+    background-color: #E9F4FF;
+    font-family: sans-serif;
+}
+
+div#container {
+    background-color: white;
+    color: #222222;
+    border-left: 1px solid #ACE;
+    border-right: 1px solid #ACE;
+    min-height: 100%;
+    
+}
+
+div#header {
+    background-color: #F4FAFF;
+    border-bottom: 1px solid #E9F4FF;
+    padding: 18px 24px;
+    height: 70px;
+}
+
+div#header div#logo {    
+    background: url('../graphics/task_master.png') transparent center center no-repeat;
+    width: 334px;
+    height: 66px;
+    margin-top: 7px;
+}
+
+div#body {
+    min-height: 800px;
+    padding: 18px 24px;
+}
+
+div#footer {
+    height: 70px;
+    padding: 18px 24px;    
+    background-color: #F4FAFF;
+    border-top: 1px solid #E9F4FF;
+}
