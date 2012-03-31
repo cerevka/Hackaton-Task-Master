@@ -153,4 +153,17 @@ public class DAOImpl extends DAOBase implements DAO {
         return ofy().query(Comment.class).list();
     }
 
+    public void create(OwnershipTag ownershipTag) {
+        ofy().put(ownershipTag);
+    }
+
+    public List<Tag> getTagsForOwnership(Ownership ownership) {
+        List<OwnershipTag> list = ofy().query(OwnershipTag.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list();
+        List<Tag> tags = new ArrayList<Tag>(list.size());
+        for (OwnershipTag ownershipTag : list) {
+            tags.add(ofy().query(Tag.class).filter("id =", ownershipTag.getTag().getName()).get());
+        }
+        return tags;
+    }
+
 }

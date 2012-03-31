@@ -19,17 +19,36 @@
 
     <strong><fmt:message key="task.state" />&nbsp;:</strong>${it.task.state.name} <br> 
 
-    <strong><fmt:message key="task.type" />&nbsp;:</strong>${it.task.type.name} <br><br>
+    <strong><fmt:message key="task.type" />&nbsp;:</strong>${it.task.type.name} 
+
+
+    <c:if test="${not empty tagsForOwnership}" >
+        <div class="tags">
+            <c:forEach items="${it.tagsForOwnership}" var="tag">
+                <div class="tag" style="background-color: ${tag.color}"><a href="#" title="${tag.text}">${tag.text}</a></div>
+            </c:forEach>
+        </class>
+    </c:if>
+
+    <div class="tags" style="float: right">
+        <c:forEach items="${it.allTags}" var="tag">
+            <div class="tag" style="background-color: ${tag.color}"><a href="/{id}/tag/{tagId}" title="${tag.text}">${tag.text}</a></div>
+        </c:forEach>
+    </div>
+
+    <br><br>
 
     <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a><br>
     <a href="/rest/userToTask/${it.task.id}"><fmt:message key="task.submit.adduser" /></a>
-    
 
-    <form action="/rest/task/${it.task.id}/commet" method="post" >
-        <div>Komentar:</div>
-        <textarea id="commentText" name="text" rows="15" cols="150" ></textarea><br />
-        <input type="submit" name="Submin" title="Submit" />
-    </form>
+
+    <c:if test="${it.noComments == false}" >
+        <form action="/rest/task/${it.task.id}/commet" method="post" >
+            <div>Komentar:</div>
+            <textarea id="commentText" name="text" rows="15" cols="150" ></textarea><br />
+            <input type="submit" name="Submin" title="Submit" />
+        </form>
+    </c:if>
 
     <table>
         <tbody>

@@ -31,5 +31,7 @@ public interface DAO {
     public void storeComment(Comment comment);
     public List<Comment> getComments();
     public User getUserByEmail(String email);
+
+    public List<Tag> getTagsForOwnership(Ownership ownership);
     
 }

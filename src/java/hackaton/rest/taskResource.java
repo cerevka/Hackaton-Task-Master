@@ -1,5 +1,6 @@
 package hackaton.rest;
 
+import com.googlecode.objectify.Key;
 import com.sun.jersey.api.view.Viewable;
 import hackaton.controller.LoginController;
 import hackaton.controller.ParserDate;
@@ -8,8 +9,11 @@ import hackaton.model.CommentType;
 import hackaton.model.DAO;
 import hackaton.model.DAOImpl;
 import hackaton.model.Ownership;
+import hackaton.model.OwnershipTag;
+import hackaton.model.OwnershipType;
 import hackaton.model.Priority;
 import hackaton.model.State;
+import hackaton.model.Tag;
 import hackaton.model.Task;
 import hackaton.model.User;
 import java.util.Collections;
@@ -142,7 +146,6 @@ public class taskResource {
         } catch (NumberFormatException ex) {
         }
         DAO dao = new DAOImpl();
-        hackaton.model.Task task = dao.getTask(taskId);
         Map<String, Object> map = new HashMap<String, Object>();
         List<Comment> commentToTask = dao.getCommentToTask(taskId);
         
@@ -151,8 +154,20 @@ public class taskResource {
                 return - o1.getCreated().compareTo(o2.getCreated());
             }
         });
+        User user = new LoginController(dao).getUser();
+        Ownership ownership = dao.getOwnershipForTaskByUser(taskId, user.getId());
         map.put("comments", commentToTask);
         map.put("task", dao.getTask(taskId));
+        List<Tag> allTagsToUser = dao.getAllTagsToUser(user);
+        if (ownership == null ) {
+            map.put("noComments", true);
+        } else {
+            List<Tag> tagsForOwnership = dao.getTagsForOwnership(ownership);
+            allTagsToUser.removeAll(tagsForOwnership);
+            map.put("tagsForOwnership", tagsForOwnership);
+            map.put("noComments", false);
+        }
+        map.put("allTags", allTagsToUser);
         return Response.ok(new Viewable("/task", map)).build();
     }
     
@@ -186,4 +201,17 @@ public class taskResource {
         Comment comment = new Comment(null, text, new Date(), ownership, type);
         new DAOImpl().storeComment(comment);
     }
+    
+    @GET
+    @Path("/{id}/tag/{tagId}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response addTag(@PathParam("id") Long id, @PathParam("tagId") Long tagId) {
+        User user = new LoginController(new DAOImpl()).getUser();
+        Ownership ownership = new DAOImpl().getOwnershipForTaskByUser(tagId, user.getId());
+        Tag tag = new DAOImpl().getTag(id);
+        OwnershipTag ownershipTag = new OwnershipTag(null, new Key<Tag>(Tag.class, tag.getId()), new Key<Ownership>(Ownership.class, ownership.getId()));
+        new DAOImpl().create(ownershipTag);
+        return showTask(String.valueOf(id));
+    }
+    
 }

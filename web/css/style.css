@@ -264,7 +264,7 @@ div#tasks div.progress div.task div.type {
     
 }
 
-div#tasks div.progress div.task div.content div.tags div.tag {
+div.tags div.tag {
     display: inline-block;
     margin-left: 5px;
     background-color: #5FB1E1;
@@ -273,11 +273,11 @@ div#tasks div.progress div.task div.content div.tags div.tag {
     margin-bottom: 8px;
 }
 
-div#tasks div.progress div.task div.content div.tags div.tag a,
-div#tasks div.progress div.task div.content div.tags div.tag a:link,
-div#tasks div.progress div.task div.content div.tags div.tag a:hover,
-div#tasks div.progress div.task div.content div.tags div.tag a:active,
-div#tasks div.progress div.task div.content div.tags div.tag a:visited {
+div.tags div.tag a,
+div.tags div.tag a:link,
+div.tags div.tag a:hover,
+div.tags div.tag a:active,
+div.tags div.tag a:visited {
     color: white;
     font-weight: bold;
     text-decoration: none;
