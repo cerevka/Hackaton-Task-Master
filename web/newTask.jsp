@@ -40,6 +40,6 @@
             <option value="HIGH"><fmt:message key="task.priority.high" /></option>
         </select>
 
-        <input type="submit" value="Odeslat" />
+        <input type="submit" value="<fmt:message key="task.submit.new" />" />
     </form>
 </my:layout>

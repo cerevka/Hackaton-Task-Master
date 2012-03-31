@@ -31,4 +31,7 @@
    <p>
        <fmt:message key="task.type" />: ${it.task.type.name}
    </p>
+   <p>
+       <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a>
+   </p>
 </my:layout>

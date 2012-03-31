@@ -11,6 +11,6 @@
     <form action="/rest/type" method="post">
             <label><fmt:message key="type.name" /></label>
             <input type="text" name="name" />
-            <input type="submit" value="Odeslat" />
+            <input type="submit" value="<fmt:message key="type.submit.new" />" />
     </form>
 </my:layout>
