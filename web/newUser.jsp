@@ -9,12 +9,37 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 
 <my:layout title="Add new user">
-   <form action="/rest/user" method="POST">
-First Name: <input type="text" name="first_name"/>
+    <script>
+        $('form#newUser').live("submit",function(){
+            if($('input#name').val()==""){
+                alert("Jmeno nesmi byt prazdne.");
+                return false;
+            }
+            if($('input#surname').val()==""){
+                alert("Prijmeni nesmi byt prazdne.");
+                return false;
+            }
+           var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+           var email = $('input#email').val();
+           if(email==""){
+                alert("Email nesmi byt prazdny.");
+                return false;
+           }
+	    if( !emailReg.test( email) ) {
+                alert("Nespravny format emailu.");
+	        return false;
+	    } else {
+	        return true;
+	    }
+            
+        });
+    </script>
 
-Last Name: <input type="text" name="last_name" />
-Email: <input type="text" name="email" />
-Comment: <input type="text" name="comment" />
-<input type="submit" value="Odeslat" />
-</form>
+    <form id="newUser" action="/rest/user" method="POST">
+        First Name: <input type="text" id="name" name="first_name"/>
+        Last Name: <input type="text" id="surname" name="last_name" />
+        Email: <input type="text" id="email" name="email" />
+        Comment: <input type="text" id="comment" name="comment" />
+        <input type="submit" value="Odeslat" />
+    </form>
 </my:layout>
