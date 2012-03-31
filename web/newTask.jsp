@@ -1,11 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <my:layout title="New Task">
     <h2><fmt:message key="task.pageTitle" /></h2>
     <c:if test="${not empty it.error}">
-        <fmt:message key="type.error" />
+        <fmt:message key="task.error" />
     </c:if>
         
     <form action="/rest/task" method="post">
@@ -34,9 +35,9 @@
 
         <label><fmt:message key="task.priority" />:</label>
         <select name="priority">
-            <option value="LOW">LOW</option>
-            <option value="MEDIUM">MEDIUM</option>
-            <option value="HIGH">HIGH</option>
+            <option value="LOW"><fmt:message key="task.priority.low" /></option>
+            <option value="MEDIUM"><fmt:message key="task.priority.medium" /></option>
+            <option value="HIGH"><fmt:message key="task.priority.high" /></option>
         </select>
 
         <input type="submit" value="Odeslat" />
