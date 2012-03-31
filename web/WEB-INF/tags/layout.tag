@@ -15,6 +15,7 @@
 
         <!-- Blueprint START -->
         <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="/css/jquery.miniColors.css" type="text/css" media="screen, projection">
         <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
         <!--[if lt IE 8]>
           <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
@@ -26,6 +27,7 @@
 
         <!-- Javascript START -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>        
+        <script type="text/javascript" src="/js/jquery.miniColors.js"></script>
         <!-- Javascript STOP -->
 
     </head>

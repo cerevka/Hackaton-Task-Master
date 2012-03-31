@@ -1,6 +1,6 @@
 package hackaton.model;
 
-enum OwnershipType {
+public enum OwnershipType {
     
     OWNER, VOLUNTEER, ASSIGNED
     
