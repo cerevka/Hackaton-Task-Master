@@ -3,6 +3,13 @@ body {
     font-family: sans-serif;
 }
 
+h1 {
+    color: #5FB1E1;
+    font-size: 32px;
+    font-weight: bold;
+    border-bottom: 3px solid #5FB1E1;
+}
+
 div#container {
     background-color: white;
     color: #222222;
@@ -88,6 +95,10 @@ div#main-menu ul li a.icon {
     padding-left: 36px;
 }
 
+div#main-menu ul li a.active {
+    color: black;
+}
+
 
 div#main-menu ul li a.icon#icon-user {
     background: url('../graphics/icons/user.png') transparent left bottom no-repeat;
@@ -141,8 +152,91 @@ div#footer div#flags a.flag#en {
     background: url('../graphics/flags/flag_gb.png') transparent center center no-repeat;
 }
 
-
 div#footer div#copyright {
     float: right;
     margin-top: 10px;
+}
+
+/*---[ Tasks ]----------------------------------------------------------------*/
+
+div#tasks {
+    width: 650px;
+}
+
+div#tasks div.full-progress {
+    background-color: #CCCCCC;
+    width: 100%;
+    border-radius: 10px 10px 50px 50px;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 30px;
+    
+}
+
+div#tasks div.progress {
+    min-height: 100px;
+    background-color: #87CC15;
+    border-radius: 10px 10px 50px 50px;
+    margin-bottom: -10px;
+    padding-top: 12px;
+}
+
+div#tasks div.progress div.state {
+    float: left;
+    margin-top: -30px;
+    color: white;
+    font-weight: bold;
+}
+
+div#tasks div.progress div.task  {
+    background-color: #D5EAFF;
+    width: 650px;
+    min-height: 100px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+div#tasks div.progress div.task h2 {
+    display: inline-block;
+    font-size: 20px;
+}
+
+div#tasks div.progress div.task h2 a,
+div#tasks div.progress div.task h2 a:link,
+div#tasks div.progress div.task h2 a:hover,
+div#tasks div.progress div.task h2 a:visited,
+div#tasks div.progress div.task h2 a:active {
+    text-decoration: none;
+    font-weight: bold;
+    color: #3E8FC6;
+}
+
+div#tasks div.progress div.task div.content {
+    padding: 10px;
+}
+
+div#tasks div.progress div.task div.type {
+    float: right;
+    font-weight: bold;
+    
+}
+
+div#tasks div.progress div.task div.content div.tags div.tag {
+    display: inline-block;
+    margin-left: 5px;
+    background-color: #5FB1E1;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+div#tasks div.progress div.task div.content div.tags div.tag a,
+div#tasks div.progress div.task div.content div.tags div.tag a:link,
+div#tasks div.progress div.task div.content div.tags div.tag a:hover,
+div#tasks div.progress div.task div.content div.tags div.tag a:active,
+div#tasks div.progress div.task div.content div.tags div.tag a:visited {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 19px;
+    background: url('../graphics/icons/small_tag.png') transparent left center no-repeat;
 }

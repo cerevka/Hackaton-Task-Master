@@ -1,12 +1,22 @@
 package hackaton.model;
 
 import com.googlecode.objectify.Key;
-import com.googlecode.objectify.Query;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DAOImpl extends DAOBase implements DAO {
+
+    static {
+        ObjectifyService.register(User.class);
+        ObjectifyService.register(Comment.class);
+        ObjectifyService.register(Ownership.class);
+        ObjectifyService.register(State.class);
+        ObjectifyService.register(Tag.class);
+        ObjectifyService.register(Type.class);
+        ObjectifyService.register(Task.class);
+    }
 
     public List<Task> getMyTasks(Long userId) {
         List<Ownership> ownership = getOwnershipByUser(userId);
@@ -42,17 +52,24 @@ public class DAOImpl extends DAOBase implements DAO {
     }
 
     public Ownership getOwnershipForTaskByUser(Long taskId, Long userId) {
-        return ofy().query(Ownership.class).filter("user =", new Key<User>(User.class, userId))
-                                           .filter("task =", new Key<Task>(Task.class, taskId)).get();
+        return ofy().query(Ownership.class).filter("user =", new Key<User>(User.class, userId)).filter("task =", new Key<Task>(Task.class, taskId)).get();
     }
 
     public List<Tag> getTagsForTaskByUser(Long taskId, Long userId) {
         Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
-        return ofy().query(Tag.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list();
+        if (ownership != null) {
+            return ofy().query(Tag.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list();
+        } else {
+            return new ArrayList<Tag>();
+        }
     }
 
-    public void newTagToTask(Tag tag) {
-        ofy().put(tag);
+    public void newTagToTask(Tag tag, Long taskId, Long userId) {
+        Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
+        if (ownership != null) {
+            tag.setOwnership(new Key<Ownership>(Ownership.class, ownership.getId()));
+            ofy().put(tag);
+        }
     }
 
     public List<Comment> getCommentToTask(Long taskId) {
@@ -66,8 +83,12 @@ public class DAOImpl extends DAOBase implements DAO {
         return comments;
     }
 
-    public void newComment(Comment comment) {
-        ofy().put(comment);
+    public void newComment(Comment comment, Long taskId, Long userId) {
+        Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
+        if (ownership != null) {
+            comment.setOwnership(new Key<Ownership>(Ownership.class, ownership.getId()));
+            ofy().put(comment);
+        }
     }
 
     public List<Ownership> getOwnershipByUser(Long userId) {
@@ -78,8 +99,32 @@ public class DAOImpl extends DAOBase implements DAO {
         return ofy().query(Ownership.class).filter("task =", new Key<Task>(Task.class, taskId)).list();
     }
 
+    public List<Tag> getAllTagsToUser(Long userId) {
+        List<Ownership> ownership = getOwnershipByUser(userId);
+        List<Tag> tags = new ArrayList<Tag>();
 
+        if (ownership != null) {
+            for (Ownership ownership1 : ownership) {
+                tags.addAll(ofy().query(Tag.class).filter("ownership =", ownership1.getId()).list());
+            }
+        }
 
+        return tags;
+    }
 
+    public void newState(State state) {
+        ofy().put(state);
+    }
 
+    public void newType(Type type) {
+        ofy().put(type);
+    }
+
+    public List<State> getAllStates() {
+        return ofy().query(State.class).list();
+    }
+
+    public List<Type> getAllTypes() {
+        return ofy().query(Type.class).list();
+    }
 }
