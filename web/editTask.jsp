@@ -17,7 +17,7 @@
         <input type="text" name="title" value="${it.task.title}"/>
 
         <label><fmt:message key="task.description" />:</label>
-        <input type="text" name="description" value="${it.task.description}"/>
+        <textarea name="description">${it.task.description}</textarea>
 
         <label><fmt:message key="task.deadline" />:</label>
         <fmtt:formatDate value="${it.task.deadline}" pattern="dd.MM.yyyy" var="date" />
