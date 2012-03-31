@@ -32,31 +32,33 @@ public class TaskByUser {
         List<TaskOverview> result = new ArrayList<TaskOverview>();
     if(param==1){//user je tvurce tasku        
         for(Task t : l){
-          Ownership own =  new DAOImpl().getOwnershipForTaskByUser(t.getId(), userId);
-          if(own.getType() == OwnershipType.OWNER){
+          List<Ownership> ownList =  new DAOImpl().getOwnershipsForTaskByUser(t.getId(), userId);
+         for(Ownership ow : ownList)
+          if(ow.getType() == OwnershipType.OWNER){
              result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
-
+             
           }
-        }
+       break; }
     }
-     if(param==2){//user je tvurce prirzen tasku      
-        for(Task t : l){
-          Ownership own =  new DAOImpl().getOwnershipForTaskByUser(t.getId(), userId);
-          if(own.getType() == OwnershipType.ASSIGNED){
-            result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
-
+     if(param==2){//user je tvurcem prirazen k tasku      
+         for(Task t : l){
+          List<Ownership> ownList =  new DAOImpl().getOwnershipsForTaskByUser(t.getId(), userId);
+         for(Ownership ow : ownList)
+          if(ow.getType() == OwnershipType.ASSIGNED){
+             result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
+             
           }
-        }
+        break;}
     }
       if(param==3){//user je dobrovolnik tasku       
-        for(Task t : l){
-          Ownership own =  new DAOImpl().getOwnershipForTaskByUser(t.getId(), userId);
-          if(own.getType() == OwnershipType.VOLUNTEER){
-               result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
-       
-              
+         for(Task t : l){
+          List<Ownership> ownList =  new DAOImpl().getOwnershipsForTaskByUser(t.getId(), userId);
+         for(Ownership ow : ownList)
+          if(ow.getType() == OwnershipType.VOLUNTEER){
+             result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
+            
           }
-        }
+         break;}
     }
     map.put("tasks", result);     
         

@@ -62,6 +62,10 @@ public class DAOImpl extends DAOBase implements DAO {
         return ofy().query(Ownership.class).filter("user =", new Key<User>(User.class, userId)).filter("task =", new Key<Task>(Task.class, taskId)).get();
     }
 
+      public List<Ownership> getOwnershipsForTaskByUser(Long taskId, Long userId) {
+        return ofy().query(Ownership.class).filter("user =", new Key<User>(User.class, userId)).filter("task =", new Key<Task>(Task.class, taskId)).list();
+    }
+    
     public List<Tag> getTagsForTaskByUser(Long taskId, Long userId) {
         Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
         if (ownership != null) {
