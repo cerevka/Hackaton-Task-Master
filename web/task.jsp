@@ -34,4 +34,7 @@
    <p>
        <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a>
    </p>
+   <p>
+       <a href="/rest/userToTask/${it.task.id}"><fmt:message key="task.submit.adduser" /></a>
+   </p>
 </my:layout>
