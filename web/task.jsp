@@ -5,11 +5,11 @@
 <%@taglib prefix="fmtt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <my:layout title="Task">
+   
+    <h1>${it.task.title}</h1>
+   
    <p>
-       <fmt:message key="task.title" />: ${it.task.title}
-   </p>
-   <p>
-       <fmt:message key="task.description" />: ${it.task.description}
+       ${it.task.description}
    </p>
    <p>
        <fmt:message key="task.priority" />: ${it.task.priority}

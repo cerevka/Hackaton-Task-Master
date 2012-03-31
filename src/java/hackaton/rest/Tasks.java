@@ -48,7 +48,7 @@ public class Tasks {
 
         List<TaskOverview> l = new ArrayList<TaskOverview>();
         for(hackaton.model.Task t : new DAOImpl().getAllTasks()){
-            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress()));
+            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
         }
         model.put("tasks", l);
         return Response.ok(new Viewable("/tasks", model)).build();

@@ -10,7 +10,7 @@
         <fmt:message key="task.error" />
     </c:if>
 
-    <form action="/rest/task" method="post">
+    <form action="/rest/task" method="post" id="editTask">
         <input type="hidden" name="id" value="${it.task.id}">
         <label><fmt:message key="task.title" />:</label>
         <input type="text" name="title" value="${it.task.title}"/>
