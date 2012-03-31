@@ -12,8 +12,11 @@ import hackaton.model.Priority;
 import hackaton.model.State;
 import hackaton.model.Task;
 import hackaton.model.User;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -133,10 +136,18 @@ public class taskResource {
             taskId = Long.valueOf(id);
         } catch (NumberFormatException ex) {
         }
-        hackaton.model.Task task = new DAOImpl().getTask(taskId);
+        DAO dao = new DAOImpl();
+        hackaton.model.Task task = dao.getTask(taskId);
         Map<String, Object> map = new HashMap<String, Object>();
-        //map.put("users", new DAOImpl().)
-        map.put("task", new DAOImpl().getTask(taskId));
+        List<Comment> commentToTask = dao.getCommentToTask(taskId);
+        
+        Collections.sort(commentToTask, new Comparator<Comment>() {
+            public int compare(Comment o1, Comment o2) {
+                return o1.getCreated().compareTo(o2.getCreated());
+            }
+        });
+        map.put("comments", commentToTask);
+        map.put("task", dao.getTask(taskId));
         return Response.ok(new Viewable("/task", map)).build();
     }
     
@@ -168,6 +179,6 @@ public class taskResource {
     
     private void createMessage(DAO dao, String text, Ownership ownership, CommentType type) {
         Comment comment = new Comment(null, text, new Date(), ownership, type);
-        dao.storeComment(comment);
+        new DAOImpl().storeComment(comment);
     }
 }

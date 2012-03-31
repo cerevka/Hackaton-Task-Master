@@ -7,7 +7,7 @@ import com.googlecode.objectify.util.DAOBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOImpl extends DAOBase implements DAO, NewInterface {
+public class DAOImpl extends DAOBase implements DAO {
 
     static {
         ObjectifyService.register(User.class);
@@ -72,14 +72,15 @@ public class DAOImpl extends DAOBase implements DAO, NewInterface {
     }
 
     public List<Comment> getCommentToTask(Long taskId) {
-        List<Ownership> ownerships = getOwnershipByTaks(taskId);
-        List<Comment> comments = new ArrayList<Comment>();
-
-        for (Ownership ownership : ownerships) {
-            comments.addAll(ofy().query(Comment.class).filter("ownership =", ownership.getId()).list());
-        }
-
-        return comments;
+//        List<Ownership> ownerships = getOwnershipByTaks(taskId);
+//        List<Comment> comments = new ArrayList<Comment>();
+        return ofy().query(Comment.class).list();
+//        for (Ownership ownership : ownerships) {
+//            List<Comment> list = ofy().query(Comment.class).list();//.filter("ownership =", new Key<Comment>(Comment.class, ownership.getId()))
+//            comments.addAll(list);
+//        }
+//
+//        return comments;
     }
 
     public void newComment(Comment comment, Long taskId, Long userId) {
@@ -140,15 +141,6 @@ public class DAOImpl extends DAOBase implements DAO, NewInterface {
 
     public User getUserByEmail(String email) {
         return ofy().query(User.class).filter("email =", email).get();
-    }
-
-    @Override
-    public List<Comment> getCommentsForOwnerships(List<Ownership> ownerships) {
-        List<Comment> comments = new ArrayList<Comment>();
-        for (Ownership ownership : ownerships) {
-            comments.addAll(ofy().query(Comment.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list());
-        }
-        return comments;
     }
 
     public void storeComment(Comment comment) {

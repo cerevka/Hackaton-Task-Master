@@ -35,7 +35,7 @@
         <tbody>
             <c:forEach items="${it.comments}" var="comment" >
                 <tr>
-                    <td colspan="2">${comment.created}</td>
+                    <td colspan="2"><fmtt:formatDate value="${comment.created}" pattern="dd.MM.yyyy   hh:mm" /></td>
                     <td colspan="10">${comment.text}</td>
                 </tr>
             </c:forEach>
