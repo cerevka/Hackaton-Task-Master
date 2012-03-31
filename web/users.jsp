@@ -19,10 +19,11 @@
     <tbody>
 
         <c:forEach items="${it.users}" var="user" >
-            <tr>  
+           <tr> 
                 <td> ${user.firstname}</td>
-                <td> ${user.surname}</td>
+                <td><a href="/rest/user/${user.id}"> ${user.surname}</a></td>
                 <td> ${user.role}</td>
+                
             </tr>
         </c:forEach>
 
