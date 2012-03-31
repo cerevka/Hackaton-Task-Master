@@ -20,6 +20,10 @@
     <p>
         Role: ${it.user.role}
    </p>
+    <p>
+        Email: ${it.user.email}
+   </p>
+   <a href="/rest/user/edit/${it.user.id}">Editovat profil</a>
    <c:forEach items="${it.tasks}" var="task" >
      <div id="tasks">      
     <my:task task="${task}"></my:task>    

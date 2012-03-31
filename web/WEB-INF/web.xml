@@ -13,6 +13,20 @@
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+    
+    
+    <filter>
+        <filter-name>MyFilter</filter-name>
+        <filter-class>hackaton.filter.GoogleUserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    
+    
+    
     <session-config>
         <session-timeout>
             30
