@@ -1,6 +1,7 @@
 package hackaton.model;
 
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
 import java.util.ArrayList;
@@ -17,7 +18,12 @@ public class DAOImpl extends DAOBase implements DAO {
         ObjectifyService.register(Type.class);
         ObjectifyService.register(Task.class);
         ObjectifyService.register(OwnershipTag.class);
-    }
+        Objectify ofy = ObjectifyService.beginTransaction();
+        User user = new User(1L, "Jmeno", "Prijmeni", "test@example.com", "", Role.ADMIN);
+        ofy.put(user);
+        ofy.getTxn().commit();
+     }
+
 
     public List<Task> getMyTasks(Long userId) {
         List<Ownership> ownership = getOwnershipByUser(userId);
@@ -64,14 +70,6 @@ public class DAOImpl extends DAOBase implements DAO {
             return new ArrayList<Tag>();
         }
     }
-
-//    public void newTagToTask(Tag tag, Long taskId, Long userId) {
-//        Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
-//        if (ownership != null) {
-//            tag.addOwnership(ownership);
-//            ofy().put(tag);
-//        }
-//    }
 
     public List<Comment> getCommentToTask(Long taskId) {
         List<Ownership> ownerships = getOwnershipByTaks(taskId);
@@ -141,7 +139,7 @@ public class DAOImpl extends DAOBase implements DAO {
     }
 
     public User getUserByEmail(String email) {
-        return ofy().query(User.class).filter("name =", email).get();
+        return ofy().query(User.class).filter("email =", email).get();
     }
 
 }
