@@ -142,4 +142,8 @@ public class DAOImpl extends DAOBase implements DAO {
         return ofy().query(User.class).filter("email =", email).get();
     }
 
+    public void storeOwnership(Ownership ownership) {
+        ofy().put(ownership);
+    }
+
 }

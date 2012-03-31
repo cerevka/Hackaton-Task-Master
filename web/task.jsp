@@ -7,7 +7,6 @@
 <my:layout title="Task">
 
     <h1>${it.task.title}</h1>
-
     <p>
         ${it.task.description}
     </p>
@@ -26,6 +25,7 @@
 
     <strong><fmt:message key="task.type" />&nbsp;:</strong>${it.task.type.name} <br><br>
 
-    <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a>
+    <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a><br>
 
+    <a href="/rest/userToTask/${it.task.id}"><fmt:message key="task.submit.adduser" /></a>
 </my:layout>

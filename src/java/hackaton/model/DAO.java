@@ -28,6 +28,7 @@ public interface DAO {
     public Tag getTag(Long id);
     public void storeTag(Tag tag);
     public void storeTag(String text, String color, User user);
+    public void storeOwnership(Ownership Ownership);
 
     public User getUserByEmail(String email);
     
