@@ -43,7 +43,7 @@
             <select name="priority">
                 <option value="LOW"><fmt:message key="task.priority.low" /></option>
                 <option value="MEDIUM"><fmt:message key="task.priority.medium" /></option>
-                <option value="HEIGH"><fmt:message key="task.priority.heigh" /></option>
+                <option value="HIGH"><fmt:message key="task.priority.high" /></option>
             </select>
         </div>
         <input type="submit" value="<fmt:message key="task.submit.new" />" />
