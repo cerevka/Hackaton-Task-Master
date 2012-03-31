@@ -24,6 +24,7 @@ label {
 
 input.submit {
     clear: both;
+    display: block;
 }
 
 select {
