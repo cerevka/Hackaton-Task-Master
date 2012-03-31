@@ -14,8 +14,6 @@ import java.util.Map;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -27,8 +25,7 @@ public class TaskByUser {
     
      @GET
      @Path("/{param}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getTaskByUser(@PathParam("param") int param) {
+     public Response getTaskByUser(@PathParam("param") int param) {
          Map<String, Object> map = new HashMap<String, Object>();
          Long userId = new LoginController(new DAOImpl() ).getUser().getId();
         List<Task> l = new DAOImpl().getMyTasks(userId);
@@ -58,7 +55,7 @@ public class TaskByUser {
         }
     }
     map.put("tasks", result);     
-         
+         System.out.println("tasks.size"+result.size()); 
    return Response.ok(new Viewable("/myTasks", map)).build();
    
      }
