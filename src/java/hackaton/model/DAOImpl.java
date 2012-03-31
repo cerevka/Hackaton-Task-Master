@@ -16,6 +16,7 @@ public class DAOImpl extends DAOBase implements DAO {
         ObjectifyService.register(Tag.class);
         ObjectifyService.register(Type.class);
         ObjectifyService.register(Task.class);
+        ObjectifyService.register(OwnershipTag.class);
     }
 
     public List<Task> getMyTasks(Long userId) {
@@ -64,13 +65,13 @@ public class DAOImpl extends DAOBase implements DAO {
         }
     }
 
-    public void newTagToTask(Tag tag, Long taskId, Long userId) {
-        Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
-        if (ownership != null) {
-            tag.setOwnership(new Key<Ownership>(Ownership.class, ownership.getId()));
-            ofy().put(tag);
-        }
-    }
+//    public void newTagToTask(Tag tag, Long taskId, Long userId) {
+//        Ownership ownership = getOwnershipForTaskByUser(taskId, userId);
+//        if (ownership != null) {
+//            tag.addOwnership(ownership);
+//            ofy().put(tag);
+//        }
+//    }
 
     public List<Comment> getCommentToTask(Long taskId) {
         List<Ownership> ownerships = getOwnershipByTaks(taskId);
@@ -127,4 +128,17 @@ public class DAOImpl extends DAOBase implements DAO {
     public List<Type> getAllTypes() {
         return ofy().query(Type.class).list();
     }
+
+    public Tag getTag(Long id) {
+        return ofy().get(Tag.class, id);
+    }
+
+    public void storeTag(String text, String color, User user) {
+        storeTag(new Tag(null, text, color, user));
+    }
+    
+    public void storeTag(Tag tag) {
+        ofy().put(tag);
+    }
+
 }

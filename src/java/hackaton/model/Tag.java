@@ -8,14 +8,14 @@ public class Tag {
     @Id
     private Long id;
     private String text;
-    private Key<Ownership> ownership;
     private String color;
+    private Key<User> owner;
 
-    public Tag(Long id, String text, Ownership ownership, String color) {
+    public Tag(Long id, String text, String color, User owner) {
         this.id = id;
         this.text = text;
-        this.ownership = new Key<Ownership>(Ownership.class, ownership.getId());
         this.color = color;
+        this.owner = new Key<User>(User.class, owner.getId());
     }
     
     private Tag() { }
@@ -26,14 +26,6 @@ public class Tag {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Key<Ownership> getOwnership() {
-        return ownership;
-    }
-
-    public void setOwnership(Key<Ownership> ownership) {
-        this.ownership = ownership;
     }
 
     public String getText() {
@@ -51,5 +43,13 @@ public class Tag {
     public void setColor(String color) {
         this.color = color;
     }
-    
+
+    public Key<User> getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Key<User> owner) {
+        this.owner = owner;
+    }
+        
 }
