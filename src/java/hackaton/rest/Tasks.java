@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/taskss")
-public class taskAllResource {
+@Path("/tasks")
+public class Tasks {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

@@ -7,7 +7,7 @@ import com.googlecode.objectify.util.DAOBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOImpl extends DAOBase implements DAO {
+public class DAOImpl extends DAOBase implements DAO, NewInterface {
 
     static {
         ObjectifyService.register(User.class);
@@ -140,6 +140,23 @@ public class DAOImpl extends DAOBase implements DAO {
 
     public User getUserByEmail(String email) {
         return ofy().query(User.class).filter("email =", email).get();
+    }
+
+    @Override
+    public List<Comment> getCommentsForOwnerships(List<Ownership> ownerships) {
+        List<Comment> comments = new ArrayList<Comment>();
+        for (Ownership ownership : ownerships) {
+            comments.addAll(ofy().query(Comment.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list());
+        }
+        return comments;
+    }
+
+    public void storeComment(Comment comment) {
+        ofy().put(comment);
+    }
+
+    public void storeOwnership(Ownership ownership) {
+        ofy().put(ownership);
     }
 
 }

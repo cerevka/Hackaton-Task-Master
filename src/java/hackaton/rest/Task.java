@@ -1,57 +1,170 @@
 package hackaton.rest;
 
 import com.sun.jersey.api.view.Viewable;
+import hackaton.controller.LoginController;
+import hackaton.controller.ParserDate;
+import hackaton.model.Comment;
+import hackaton.model.CommentType;
+import hackaton.model.DAO;
 import hackaton.model.DAOImpl;
-import java.util.ArrayList;
+import hackaton.model.Ownership;
+import hackaton.model.OwnershipType;
+import hackaton.model.Priority;
+import hackaton.model.User;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/**
- *
- * @author Tomáš Čerevka <tomas@cerevka.cz>
- */
-@Path("/tasks")
+
+@Path("/task")
 public class Task {
     
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response createTask(@FormParam("title") String title,
+            @FormParam("description") String description,
+            @FormParam("deadline") String deadline,
+            @FormParam("priority") String priority,
+            @FormParam("state") String state,
+            @FormParam("type") String type,
+            @FormParam("id") String id,
+            @FormParam("progress") String progress) {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (state.equals("") || type.equals("")) {
+            map.put("error", "type.error");
+            map.put("states", new DAOImpl().getAllStates());
+            map.put("types", new DAOImpl().getAllTypes());
+            return Response.ok(new Viewable("/newTask", map)).build();
+        }
+        hackaton.model.State sta = new DAOImpl().getState(state);
+        hackaton.model.Type typ = new DAOImpl().getType(type);
+        Date deadlineDate = new ParserDate().parseDate(deadline);
+        Long taskId = -1L;
+        int progressInt = -1;
+        if (id != null) {
+            try {
+                taskId = Long.valueOf(id);
+                progressInt = Integer.valueOf(progress);
+            } catch (NumberFormatException ex) {
+                map.put("error", "type.error");
+                map.put("states", new DAOImpl().getAllStates());
+                map.put("types", new DAOImpl().getAllTypes());
+                return Response.ok(new Viewable("/newTask", map)).build();
+            }
+
+        }
+
+        if (title.equals("") || description.equals("") || deadline.equals("") || typ == null || sta == null || deadlineDate == null) {
+            map.put("error", "type.error");
+            map.put("states", new DAOImpl().getAllStates());
+            map.put("types", new DAOImpl().getAllTypes());
+            if (id != null) {
+                map.put("task", new DAOImpl().getTask(taskId));
+                return Response.ok(new Viewable("/editTask", map)).build();
+            }
+            return Response.ok(new Viewable("/newTask", map)).build();
+        } else {
+            hackaton.model.Task task = null;
+            if (taskId != -1) {
+                hackaton.model.Task t = new DAOImpl().getTask(taskId);
+                task = new hackaton.model.Task(taskId, title, description, Priority.valueOf(priority),
+                        progressInt, t.getDateCreated(), deadlineDate, sta, typ);
+            } else {
+                task = new hackaton.model.Task(null, title, description, Priority.valueOf(priority),
+                        0, new Date(), deadlineDate, sta, typ);
+            }
+            new DAOImpl().newTask(task);
+            //map.put("task", task);
+            map.put("states", new DAOImpl().getAllStates());
+            map.put("types", new DAOImpl().getAllTypes());
+            return Response.ok(new Viewable("/newTask", map)).build();
+        }
+    }
+
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response getTask() {
-        /*Map<String, Object> model = new HashMap<String, Object>();
-        ArrayList<TaskOverview> tasks = new ArrayList<TaskOverview>();
-        
-        ArrayList<TagOverview> tags = new ArrayList<TagOverview>();
-        TagOverview tag1 = new TagOverview("Java", "#313131");
-        TagOverview tag2 = new TagOverview("GAE", "#550033");
-        tags.add(tag1);
-        tags.add(tag2);
-        
-        TaskOverview task1 = new TaskOverview("Vyhrát HackatOn", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "životní cíl", "probíhá", "#", 57, tags);
-        TaskOverview task2 = new TaskOverview("Porazit všechny soupeře", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "vývoj", "přijato", "#", 31);
-        TaskOverview task3 = new TaskOverview("Mít nejhezčí aplikaci", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "grafika", "skoro hotovo", "#", 99);
-        TaskOverview task4 = new TaskOverview("Odladit všechny chyby", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "vývoj", "reklamace", "#", 5);
-        TaskOverview task5 = new TaskOverview("Být nejlepší", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "obchodní", "probíhá", "#", 45);
-        tasks.add(task1);
-        tasks.add(task2);
-        tasks.add(task3);
-        tasks.add(task4);
-        tasks.add(task5);
-        
-        model.put("tasks", tasks);
-        return Response.ok(new Viewable("/tasks", model)).build();*/
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("states", new DAOImpl().getAllStates());
+        map.put("types", new DAOImpl().getAllTypes());
+        return Response.ok(new Viewable("/newTask", map)).build();
+    }
 
-        List<TaskOverview> l = new ArrayList<TaskOverview>();
-        for(hackaton.model.Task t : new DAOImpl().getAllTasks()){
-            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress()));
+    @GET
+    @Path("/edit/{id}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response editTask(@PathParam("id") String id) {
+        Long taskId = -1L;
+        try {
+            taskId = Long.valueOf(id);
+        } catch (NumberFormatException ex) {
         }
-        model.put("tasks", l);
-        return Response.ok(new Viewable("/tasks", model)).build();
+        hackaton.model.Task task = new DAOImpl().getTask(taskId);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("states", new DAOImpl().getAllStates());
+        map.put("types", new DAOImpl().getAllTypes());
+        map.put("task", task);
+        return Response.ok(new Viewable("/editTask", map)).build();
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response showTask(@PathParam("id") String id) {
+        DAOImpl dao = new DAOImpl();
+        Long taskId = -1L;
+        try {
+            taskId = Long.valueOf(id);
+        } catch (NumberFormatException ex) {
+        }
+//        hackaton.model.Task task = new DAOImpl().getTask(taskId);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("task", dao.getTask(taskId));
+        List<Ownership> ownershipByTaks = dao.getOwnershipByTaks(taskId);
+        List<Comment> commentsForOwnerships = dao.getCommentsForOwnerships(ownershipByTaks);
+        Collections.sort(commentsForOwnerships, new Comparator<Comment>() {
+
+            public int compare(Comment o1, Comment o2) {
+                return o2.getCreated().compareTo(o1.getCreated());
+            }
+        });
+        map.put("comments", commentsForOwnerships);
+        return Response.ok(new Viewable("/task", map)).build();
+    }
+
+    @POST
+    @Path("/{id}/commet")
+    public Response postComment(@PathParam("id") Long id, @FormParam("text") String commentText) {
+        DAO dao = new DAOImpl();
+        User user = new LoginController(dao).getUser();
+        Ownership ownership = dao.getOwnershipForTaskByUser(id, user.getId());
+        Comment comment = new Comment(null, commentText, new Date(), ownership, CommentType.MESSAGE);
+        dao.storeComment(comment);
+        return null;
     }
     
+    @POST
+    @Path("/{id}/ownership")
+    public Response setOwnership(@PathParam("id") Long id) {
+        DAO dao = new DAOImpl();
+        User user = new LoginController(dao).getUser();
+        hackaton.model.Task task = dao.getTask(id);
+        Ownership ownership = new Ownership(null, OwnershipType.VOLUNTEER, user, task);
+        dao.storeOwnership(ownership);
+        return null;
+    }
 }

@@ -30,5 +30,9 @@ public interface DAO {
     public void storeTag(String text, String color, User user);
 
     public User getUserByEmail(String email);
+
+    public void storeComment(Comment comment);
+
+    public void storeOwnership(Ownership ownership);
     
 }
