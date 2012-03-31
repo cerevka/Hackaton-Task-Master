@@ -1,5 +1,8 @@
 package hackaton.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Tomáš Čerevka <tomas@cerevka.cz>
@@ -12,7 +15,8 @@ public class TaskOverview {
     private String state;
     private String url;
     private int progress;
-    
+    private List<TagOverview> tags = new ArrayList<TagOverview>();
+
     public TaskOverview(String title, String description, String type, String state, String url, int progress) {
         this.title = title;
         this.description = description;
@@ -20,6 +24,11 @@ public class TaskOverview {
         this.state = state;
         this.url = url;
         this.progress = progress;
+    }
+    
+    public TaskOverview(String title, String description, String type, String state, String url, int progress, List<TagOverview> tags) {
+        this(title, description, type, state, url, progress);
+        this.tags = tags;
     }
 
     public int getProgress() {
@@ -37,8 +46,7 @@ public class TaskOverview {
     public String getDescription() {
         return description;
     }
-    
-    
+
     public String getType() {
         return type;
     }
@@ -46,5 +54,8 @@ public class TaskOverview {
     public String getUrl() {
         return url;
     }
-        
+
+    public List<TagOverview> getTags() {
+        return tags;
+    }
 }

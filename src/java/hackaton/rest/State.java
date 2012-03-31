@@ -21,10 +21,15 @@ public class State {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response createState(@FormParam("name") String name) {
         Map<String, Object> map = new HashMap<String, Object>();
-        hackaton.model.State state = new hackaton.model.State(name);
-        new DAOImpl().newState(state);
-        map.put("state", state);
-        return Response.ok(new Viewable("/state", map)).build();
+        if (name.equals("")) {
+            map.put("error", "state.error");
+            return Response.ok(new Viewable("/newState", map)).build();
+        } else {
+            hackaton.model.State state = new hackaton.model.State(name);
+            new DAOImpl().newState(state);
+            map.put("state", state);
+            return Response.ok(new Viewable("/state", map)).build();
+        }
     }
 
     @GET
@@ -32,5 +37,4 @@ public class State {
     public Response getStates() {
         return Response.ok(new Viewable("/newState")).build();
     }
-
 }

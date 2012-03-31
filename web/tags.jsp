@@ -5,7 +5,9 @@
 
 <fmt:message key="login.role" var="title" />
 
-<my:layout title="${title}">
+<my:layout title="${title}" active="tags">
+    
+    <h1><fmt:message key="heading.tags" /></h1>
     
     <my:tags tags="${it.tags}" />
     
