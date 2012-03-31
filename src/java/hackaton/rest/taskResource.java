@@ -4,8 +4,10 @@ import com.sun.jersey.api.view.Viewable;
 import hackaton.controller.ParserDate;
 import hackaton.model.DAOImpl;
 import hackaton.model.Priority;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -61,7 +63,7 @@ public class taskResource {
             map.put("error", "type.error");
             map.put("states", new DAOImpl().getAllStates());
             map.put("types", new DAOImpl().getAllTypes());
-            if(id != null){
+            if (id != null) {
                 map.put("task", new DAOImpl().getTask(taskId));
                 return Response.ok(new Viewable("/editTask", map)).build();
             }
@@ -78,9 +80,12 @@ public class taskResource {
             }
             new DAOImpl().newTask(task);
             //map.put("task", task);
-            map.put("states", new DAOImpl().getAllStates());
-            map.put("types", new DAOImpl().getAllTypes());
-            return Response.ok(new Viewable("/newTask", map)).build();
+            List<TaskOverview> l = new ArrayList<TaskOverview>();
+            for (hackaton.model.Task t : new DAOImpl().getAllTasks()) {
+                l.add(new TaskOverview(t.getTitle(), t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/" + t.getId(), t.getProgress(), t.getPriority()));
+            }
+            map.put("tasks", l);
+            return Response.ok(new Viewable("/tasks", map)).build();
         }
     }
 
