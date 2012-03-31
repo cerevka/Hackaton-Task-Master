@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@tag description="page layout" pageEncoding="UTF-8"%>
 <%@attribute name="title" required="true" type="java.lang.String" %>
+<%@attribute name="active" required="false" type="java.lang.String" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
@@ -15,6 +17,7 @@
 
         <!-- Blueprint START -->
         <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="/css/jquery.miniColors.css" type="text/css" media="screen, projection">
         <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
         <!--[if lt IE 8]>
           <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
@@ -26,6 +29,7 @@
 
         <!-- Javascript START -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>        
+        <script type="text/javascript" src="/js/jquery.miniColors.js"></script>
         <!-- Javascript STOP -->
 
     </head>
@@ -56,11 +60,11 @@
         <!-- Main menu START -->
         <div id="main-menu">
             <ul>
-                <li><a href="#" title="<fmt:message key="menu.myTasks" />" class="icon" id="icon-my-tasks"><fmt:message key="menu.myTasks" /></a></li>
-                <li><a href="#" title="<fmt:message key="menu.allTasks" />" class="icon" id="icon-all-tasks"><fmt:message key="menu.allTasks" /></a></li>
-                <li><a href="#" title="<fmt:message key="menu.newTask" />" class="icon" id="icon-new-tasks"><fmt:message key="menu.newTask" /></a></li>
-                <li><a href="#" title="<fmt:message key="menu.users" />" class="icon" id="icon-user"><fmt:message key="menu.users" /></a></li>
-                <li><a href="#" title="<fmt:message key="menu.tags" />" class="icon" id="icon-tag"><fmt:message key="menu.tags" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.myTasks" />" class="icon<c:if test="${active == 'myTasks'}"> active</c:if>" id="icon-my-tasks"><fmt:message key="menu.myTasks" /></a></li>
+                <li><a href="/rest/tasks" title="<fmt:message key="menu.allTasks" />" class="icon<c:if test="${active == 'allTasks'}"> active</c:if>" id="icon-all-tasks"><fmt:message key="menu.allTasks" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.newTask" />" class="icon<c:if test="${active == 'newTask'}"> active</c:if>" id="icon-new-tasks"><fmt:message key="menu.newTask" /></a></li>
+                <li><a href="/rest/users" title="<fmt:message key="menu.users" />" class="icon<c:if test="${active == 'users'}"> active</c:if>" id="icon-user"><fmt:message key="menu.users" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.tags" />" class="icon<c:if test="${active == 'tags'}"> active</c:if>" id="icon-tag"><fmt:message key="menu.tags" /></a></li>
             </ul>
         </div>
         <!-- Main menu STOP -->

@@ -95,6 +95,10 @@ div#main-menu ul li a.icon {
     padding-left: 36px;
 }
 
+div#main-menu ul li a.active {
+    color: black;
+}
+
 
 div#main-menu ul li a.icon#icon-user {
     background: url('../graphics/icons/user.png') transparent left bottom no-repeat;
@@ -165,11 +169,11 @@ div#tasks div.full-progress {
     border-radius: 10px 10px 50px 50px;
     margin: 0px;
     padding: 0px;
+    margin-bottom: 30px;
     
 }
 
 div#tasks div.progress {
-    width: 44%;
     min-height: 100px;
     background-color: #87CC15;
     border-radius: 10px 10px 50px 50px;

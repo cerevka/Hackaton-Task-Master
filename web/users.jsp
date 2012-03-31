@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 
-<my:layout title="Users">
+<my:layout title="Users" active="users">
     <table>
         <thead>
         <th>
@@ -19,10 +19,11 @@
     <tbody>
 
         <c:forEach items="${it.users}" var="user" >
-            <tr>  
+           <tr> 
                 <td> ${user.firstname}</td>
-                <td> ${user.surname}</td>
+                <td><a href="/rest/user/${user.id}"> ${user.surname}</a></td>
                 <td> ${user.role}</td>
+                
             </tr>
         </c:forEach>
 
