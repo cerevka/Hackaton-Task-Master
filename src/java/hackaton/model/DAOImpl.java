@@ -1,12 +1,15 @@
 package hackaton.model;
 
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DAOImpl extends DAOBase implements DAO {
-
+static{
+                ObjectifyService.register(User.class);
+        } 
     public List<Task> getMyTasks(Long userId) {
         List<Ownership> ownership = getOwnershipByUser(userId);
         List<Task> task = new ArrayList<Task>();
