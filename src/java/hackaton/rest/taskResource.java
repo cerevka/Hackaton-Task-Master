@@ -135,6 +135,7 @@ public class taskResource {
         }
         hackaton.model.Task task = new DAOImpl().getTask(taskId);
         Map<String, Object> map = new HashMap<String, Object>();
+        //map.put("users", new DAOImpl().)
         map.put("task", new DAOImpl().getTask(taskId));
         return Response.ok(new Viewable("/task", map)).build();
     }
