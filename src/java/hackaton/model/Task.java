@@ -84,6 +84,14 @@ public class Task {
         return state;
     }
 
+    public String getStateName() {
+        return state.getName();
+    }
+
+    public String getTypeName() {
+        return type.getName();
+    }
+
     public void setState(Key<State> state) {
         this.state = state;
     }

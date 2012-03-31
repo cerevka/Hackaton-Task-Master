@@ -29,4 +29,8 @@
             <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>hackaton.bundle.bundle</param-value>
+    </context-param>
 </web-app>

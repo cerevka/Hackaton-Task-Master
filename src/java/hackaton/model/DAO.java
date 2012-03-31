@@ -12,10 +12,14 @@ public interface DAO {
     public List<User> getAllUsers();
     public User getUser(Long id);
     public List<Tag> getTagsForTaskByUser(Long taskId, Long userId);
+    public void newTagToTask(Tag tag, Long taskId, Long userId);
+    public List<Tag> getAllTagsToUser(Long userId);
     public Ownership getOwnershipForTaskByUser(Long taskId, Long userId);
-    public void newTagToTask(Tag tag);
-    public List<Comment> getCommentToTask(Long taskId);
-    public void newComment(Comment comment);
     public List<Ownership> getOwnershipByUser(Long userId);
     public List<Ownership> getOwnershipByTaks(Long taskId);
+    public List<Comment> getCommentToTask(Long taskId);
+    public void newComment(Comment comment, Long taskId, Long userId); 
+    public void newState(State state);
+    public void newType(Type type);
+    
 }
