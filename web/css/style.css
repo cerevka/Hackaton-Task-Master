@@ -218,6 +218,8 @@ div#tasks div.progress {
     border-radius: 10px 10px 50px 50px;
     margin-bottom: -10px;
     padding-top: 12px;
+    max-width: 650px;
+    
 }
 
 

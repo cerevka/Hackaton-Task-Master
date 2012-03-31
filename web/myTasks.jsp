@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<my:layout title="New Type">   
+<my:layout title="New Type" active="myTasks">   
     <h1><fmt:message key="heading.myTasks" /></h1>
     
    <a href="/rest/taskByUser/1"><fmt:message key="label.mytasks" /></a>
