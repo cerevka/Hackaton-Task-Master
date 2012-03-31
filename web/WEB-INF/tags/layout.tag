@@ -56,11 +56,11 @@
         <!-- Main menu START -->
         <div id="main-menu">
             <ul>
-                <li><a href="#" title="Moje úkoly" class="icon" id="icon-my-tasks">Moje úkoly</a></li>
-                <li><a href="#" title="Úkoly" class="icon" id="icon-all-tasks">Úkoly</a></li>
-                <li><a href="#" title="Nový úkol" class="icon" id="icon-new-tasks">Nový úkol</a></li>
-                <li><a href="#" title="Uživatelé" class="icon" id="icon-user">Uživatelé</a></li>
-                <li><a href="#" title="Štítky" class="icon" id="icon-tag">Štítky</a></li>
+                <li><a href="#" title="<fmt:message key="menu.myTasks" />" class="icon" id="icon-my-tasks"><fmt:message key="menu.myTasks" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.allTasks" />" class="icon" id="icon-all-tasks"><fmt:message key="menu.allTasks" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.newTask" />" class="icon" id="icon-new-tasks"><fmt:message key="menu.newTask" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.users" />" class="icon" id="icon-user"><fmt:message key="menu.users" /></a></li>
+                <li><a href="#" title="<fmt:message key="menu.tags" />" class="icon" id="icon-tag"><fmt:message key="menu.tags" /></a></li>
             </ul>
         </div>
         <!-- Main menu STOP -->
