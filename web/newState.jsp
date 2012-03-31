@@ -11,6 +11,6 @@
     <form action="/rest/state" method="post">
         <label><fmt:message key="state.name" /></label>
         <input type="text" name="name" />
-        <input type="submit" value="Odeslat" />
+        <input type="submit" value="<fmt:message key="state.submit.new" />" />
     </form>
 </my:layout>
