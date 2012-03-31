@@ -17,7 +17,7 @@
                     </div>
                     <div class="tags">
                         <c:forEach items="${task.tags}" var="tag">
-                            <div class="tag"><a href="#" title="${tag.text}">${tag.text}</a></div>
+                            <div class="tag" style="background-color: ${tag.color}"><a href="#" title="${tag.text}">${tag.text}</a></div>
                         </c:forEach>
                     </div>
                 </div>

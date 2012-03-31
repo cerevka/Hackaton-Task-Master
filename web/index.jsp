@@ -6,7 +6,7 @@
 <fmt:message key="title.homepage" var="title" />
 
 <my:layout title="${title}" active="home">
-
-   
+    
+    <h1><fmt:message key="heading.welcome" /></h1>
 
 </my:layout>

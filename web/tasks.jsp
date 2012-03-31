@@ -15,5 +15,9 @@
             <my:task task="${task}"></my:task>
         </c:forEach>
     </div>
+    
+    <div id="tags">
+        
+    </div>
 
 </my:layout>

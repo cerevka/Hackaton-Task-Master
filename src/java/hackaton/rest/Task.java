@@ -24,8 +24,8 @@ public class Task {
         ArrayList<TaskOverview> tasks = new ArrayList<TaskOverview>();
         
         ArrayList<TagOverview> tags = new ArrayList<TagOverview>();
-        TagOverview tag1 = new TagOverview("Java", "#313131");
-        TagOverview tag2 = new TagOverview("GAE", "#550033");
+        TagOverview tag1 = new TagOverview("Java", "#64d700");
+        TagOverview tag2 = new TagOverview("GAE", "#ee3133");
         tags.add(tag1);
         tags.add(tag2);
         
