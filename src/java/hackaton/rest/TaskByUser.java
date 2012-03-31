@@ -29,12 +29,13 @@ public class TaskByUser {
          Map<String, Object> map = new HashMap<String, Object>();
          Long userId = new LoginController(new DAOImpl() ).getUser().getId();
         List<Task> l = new DAOImpl().getMyTasks(userId);
-        List<Task> result = new ArrayList<Task>();
+        List<TaskOverview> result = new ArrayList<TaskOverview>();
     if(param==1){//user je tvurce tasku        
         for(Task t : l){
           Ownership own =  new DAOImpl().getOwnershipForTaskByUser(t.getId(), userId);
           if(own.getType() == OwnershipType.OWNER){
-             result.add(t);
+             result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
+
           }
         }
     }
@@ -42,7 +43,8 @@ public class TaskByUser {
         for(Task t : l){
           Ownership own =  new DAOImpl().getOwnershipForTaskByUser(t.getId(), userId);
           if(own.getType() == OwnershipType.ASSIGNED){
-              result.add(t);
+            result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
+
           }
         }
     }
@@ -50,12 +52,14 @@ public class TaskByUser {
         for(Task t : l){
           Ownership own =  new DAOImpl().getOwnershipForTaskByUser(t.getId(), userId);
           if(own.getType() == OwnershipType.VOLUNTEER){
-              result.add(t);
+               result.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
+       
+              
           }
         }
     }
     map.put("tasks", result);     
-         System.out.println("tasks.size"+result.size()); 
+        
    return Response.ok(new Viewable("/myTasks", map)).build();
    
      }
