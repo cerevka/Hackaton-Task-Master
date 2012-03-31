@@ -100,17 +100,8 @@ public class DAOImpl extends DAOBase implements DAO {
         return ofy().query(Ownership.class).filter("task =", new Key<Task>(Task.class, taskId)).list();
     }
 
-    public List<Tag> getAllTagsToUser(Long userId) {
-        List<Ownership> ownership = getOwnershipByUser(userId);
-        List<Tag> tags = new ArrayList<Tag>();
-
-        if (ownership != null) {
-            for (Ownership ownership1 : ownership) {
-                tags.addAll(ofy().query(Tag.class).filter("ownership =", ownership1.getId()).list());
-            }
-        }
-
-        return tags;
+    public List<Tag> getAllTagsToUser(User user) {
+        return ofy().query(Tag.class).filter("owner =", new Key<User>(User.class, user.getId())).list();
     }
 
     public void newState(State state) {
@@ -147,6 +138,10 @@ public class DAOImpl extends DAOBase implements DAO {
 
     public Type getType(String name) {
         return ofy().query(Type.class).filter("name =", name).get();
+    }
+
+    public User getUserByEmail(String email) {
+        return ofy().query(User.class).filter("name =", email).get();
     }
 
 }
