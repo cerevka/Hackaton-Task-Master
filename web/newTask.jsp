@@ -18,10 +18,10 @@
             <input type="text" name="title" value="${it.task.title}"/>
 
             <label><fmt:message key="task.description" />:</label>
-            <textarea name="description">${it.task.description}</textarea>>
+            <textarea name="description">${it.task.description}</textarea>
 
             <label><fmt:message key="task.deadline" />:</label>
-            <input type="text" name="deadline" value="${it.task.deadline}"/>
+            <input type="text" name="deadline" value="${it.task.deadline}" class="datepicker" />
         </div>
         <div>
 
