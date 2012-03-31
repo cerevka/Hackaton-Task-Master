@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
@@ -5,12 +6,14 @@
 
 <fmt:message key="title.homepage" var="title" />
 
-<my:layout title="${title}">
+<my:layout title="${title}" active="allTasks">
 
     <h1>Tasks</h1>
 
     <div id="tasks">
-        <my:task task="${it.task}"></my:task>
+        <c:forEach items="${it.tasks}" var="task">
+            <my:task task="${task}"></my:task>
+        </c:forEach>
     </div>
 
 </my:layout>

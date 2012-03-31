@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 
-<my:layout title="Users">
+<my:layout title="Users" active="users">
     <table>
         <thead>
         <th>

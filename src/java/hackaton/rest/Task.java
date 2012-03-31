@@ -1,6 +1,7 @@
 package hackaton.rest;
 
 import com.sun.jersey.api.view.Viewable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ws.rs.GET;
@@ -20,8 +21,19 @@ public class Task {
     @Produces(MediaType.TEXT_PLAIN)
     public Response getTask() {
         Map<String, Object> model = new HashMap<String, Object>();
-        TaskOverview task = new TaskOverview("Vyhrát HackatOn", "Dlouhy popis", "obchodní", "probíhá", "#", 44);
-        model.put("task", task);
+        ArrayList<TaskOverview> tasks = new ArrayList<TaskOverview>();
+        TaskOverview task1 = new TaskOverview("Vyhrát HackatOn", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "životní cíl", "probíhá", "#", 57);
+        TaskOverview task2 = new TaskOverview("Porazit všechny soupeře", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "vývoj", "přijato", "#", 31);
+        TaskOverview task3 = new TaskOverview("Mít nejhezčí aplikaci", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "grafika", "skoro hotovo", "#", 99);
+        TaskOverview task4 = new TaskOverview("Odladit všechny chyby", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "vývoj", "reklamace", "#", 5);
+        TaskOverview task5 = new TaskOverview("Být nejlepší", "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", "obchodní", "probíhá", "#", 45);
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
+        tasks.add(task4);
+        tasks.add(task5);
+        
+        model.put("tasks", tasks);
         return Response.ok(new Viewable("/tasks", model)).build();
     }
     

@@ -5,7 +5,7 @@
 
 <fmt:message key="title.homepage" var="title" />
 
-<my:layout title="${title}">
+<my:layout title="${title}" active="home">
 
    
 
