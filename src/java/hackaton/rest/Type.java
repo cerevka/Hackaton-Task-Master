@@ -13,24 +13,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/state")
-public class State {
+@Path("/type")
+public class Type {
 
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response createState(@FormParam("name") String name) {
+    public Response createType(@FormParam("name") String name) {
         Map<String, Object> map = new HashMap<String, Object>();
-        hackaton.model.State state = new hackaton.model.State(name);
-        new DAOImpl().newState(state);
-        map.put("state", state);
-        return Response.ok(new Viewable("/state", map)).build();
+        hackaton.model.Type type = new hackaton.model.Type(name);
+        new DAOImpl().newType(type);
+        map.put("type", type);
+        return Response.ok(new Viewable("/type", map)).build();
     }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public Response getStates() {
+    public Response getType() {
         return Response.ok(new Viewable("/newState")).build();
     }
-
 }
