@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
  * @author Tomáš Čerevka <tomas@cerevka.cz>
  */
 @Path("/tasks")
-public class Task {
+public class Tasks {
     
     @GET
     @Produces(MediaType.TEXT_PLAIN)
