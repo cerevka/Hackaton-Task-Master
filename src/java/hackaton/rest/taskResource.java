@@ -8,6 +8,7 @@ import hackaton.model.CommentType;
 import hackaton.model.DAO;
 import hackaton.model.DAOImpl;
 import hackaton.model.Ownership;
+import hackaton.model.OwnershipType;
 import hackaton.model.Priority;
 import hackaton.model.State;
 import hackaton.model.Task;
@@ -163,7 +164,7 @@ public class taskResource {
         DAO dao = new DAOImpl();
         User user = new LoginController(dao).getUser();
         Ownership ownership = dao.getOwnershipForTaskByUser(id, user.getId());
-        createMessage(dao, text, ownership, CommentType.MESSAGE);
+        createMessage(text, ownership, CommentType.MESSAGE);
         return showTask(String.valueOf(id));
     }
     
@@ -172,7 +173,7 @@ public class taskResource {
         User user = new LoginController(dao).getUser();
         Ownership ownership = dao.getOwnershipForTaskByUser(t.getId(), user.getId());
         String text = "Změna stavu z: " + t.getState().getName() + " na: " + sta.getName() + ".";
-        createMessage(dao, text, ownership, CommentType.ACTION);
+        createMessage(text, ownership, CommentType.ACTION);
     }
     
     private void createChangeProgressActionMessage(Task t, int progressInt) {
@@ -180,10 +181,10 @@ public class taskResource {
         User user = new LoginController(dao).getUser();
         Ownership ownership = dao.getOwnershipForTaskByUser(t.getId(), user.getId());
         String text = "Změna progressu z: " + t.getProgress() + " na: " + progressInt + ".";
-        createMessage(dao, text, ownership, CommentType.ACTION);
+        createMessage(text, ownership, CommentType.ACTION);
     }
     
-    private void createMessage(DAO dao, String text, Ownership ownership, CommentType type) {
+    private void createMessage(String text, Ownership ownership, CommentType type) {
         Comment comment = new Comment(null, text, new Date(), ownership, type);
         new DAOImpl().storeComment(comment);
     }
