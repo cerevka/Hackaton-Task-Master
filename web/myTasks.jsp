@@ -16,7 +16,7 @@
    <a href="/rest/taskByUser/2"><fmt:message key="label.minetasks" /></a>
    <a href="/rest/taskByUser/3"><fmt:message key="label.volunteer" /></a>
 
-    <div id="tasks">
+     <div id="tasks">
         <c:forEach items="${it.tasks}" var="task">
             <my:task task="${task}"></my:task>
         </c:forEach>
