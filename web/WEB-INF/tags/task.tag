@@ -27,7 +27,7 @@
             
                 <c:if test="${task.priority == 'LOW'}" ><div class="priority low"><fmt:message key="task.priority.low" /></div></c:if>
                 <c:if test="${task.priority == 'MEDIUM'}" ><div class="priority medium"><fmt:message key="task.priority.medium" /></div></c:if>
-                <c:if test="${task.priority == 'HIGH'}" ><div class="priority height"><fmt:message key="task.priority.heigh" /></div></c:if>
+                <c:if test="${task.priority == 'HIGH'}" ><div class="priority height"><fmt:message key="task.priority.high" /></div></c:if>
             
         </div>
     </div>

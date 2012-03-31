@@ -5,12 +5,13 @@
 <%@ taglib prefix="fmtt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <my:layout title="Edit task">
-    <h2><fmt:message key="task.edit.task" /></h2>
+    <h1><fmt:message key="task.edit.task" /></h1>
     <c:if test="${not empty it.error}">
         <fmt:message key="task.error" />
     </c:if>
 
     <form action="/rest/task" method="post" id="editTask">
+        <div class="left">
         <input type="hidden" name="id" value="${it.task.id}">
         <label><fmt:message key="task.title" />:</label>
         <input type="text" name="title" value="${it.task.title}"/>
@@ -24,7 +25,8 @@
 
         <label><fmt:message key="task.progress" />:</label>
         <input type="text" name="progress" value="${it.task.progress}"/>
-
+        </div>
+        <div>
         <label><fmt:message key="task.state" />:</label>
         <select name="state">
             <c:forEach items="${it.states}" var="state">
@@ -45,7 +47,7 @@
             <option value="MEDIUM"><fmt:message key="task.priority.medium" /></option>
             <option value="HIGH"><fmt:message key="task.priority.high" /></option>
         </select>
-
-        <input type="submit" value="<fmt:message key="task.submit.edit" />" />
+        </div>
+        <input type="submit" class="submit" value="<fmt:message key="task.submit.edit" />" />
     </form>
 </my:layout>

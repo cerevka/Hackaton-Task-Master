@@ -42,6 +42,6 @@
         <label for="surname"><fmt:message key="form.newUser.surname" />:&nbsp;</label> <input type="text" id="surname"  name="last_name" value=${it.user.surname} />
         <label for="email"><fmt:message key="form.newUser.email" />:&nbsp;</label> <input type="text" id="email" name="email" value=${it.user.email} />
          <label for="comment"><fmt:message key="form.newUser.comment" />:&nbsp;</label> <input type="text" id="comment" name ="comment" value=${it.user.comment}  />
-       <input type="submit" value="<fmt:message key="form.newUser.send" />" />
+       <input type="submit" class="submit" value="<fmt:message key="form.newUser.send" />" />
     </form>
 </my:layout>
