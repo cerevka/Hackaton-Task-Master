@@ -5,34 +5,24 @@
 <%@taglib prefix="fmtt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <my:layout title="Task">
-    <h1>${it.task.title}</h1>
 
-    <p>
-        ${it.task.description}
-    </p>
-    <p>
-        <fmt:message key="task.priority" />: ${it.task.priority}
-    </p>
-    <p>
-        <fmt:message key="task.progress" />: ${it.task.progress}
-    </p>
-    <p>
-        <fmtt:formatDate value="${it.task.dateCreated}" pattern="dd.MM.yyyy" var="date" />
-        <fmt:message key="task.dateCreated" />: ${date}
-    </p>
-    <p>
-        <fmtt:formatDate value="${it.task.deadline}" pattern="dd.MM.yyyy" var="date1" />
-        <fmt:message key="task.deadline" />: ${date1}
-    </p>
-    <p>
-        <fmt:message key="task.state" />: ${it.task.state.name}
-    </p>
-    <p>
-        <fmt:message key="task.type" />: ${it.task.type.name}
-    </p>
-    <p>
-        <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a>
-    </p>
+    <strong><fmt:message key="task.priority" />&nbsp;:</strong>${it.task.priority} <br>
+
+
+    <strong><fmt:message key="task.progress" />&nbsp;:</strong>${it.task.progress} <br> 
+
+    <fmtt:formatDate value="${it.task.dateCreated}" pattern="dd.MM.yyyy" var="date" /> 
+    <strong><fmt:message key="task.dateCreated" />&nbsp;:</strong>${date} <br>
+
+    <fmtt:formatDate value="${it.task.deadline}" pattern="dd.MM.yyyy" var="date1" />
+    <strong><fmt:message key="task.deadline" />&nbsp;:</strong>${date1} <br>
+
+    <strong><fmt:message key="task.state" />&nbsp;:</strong>${it.task.state.name} <br> 
+
+    <strong><fmt:message key="task.type" />&nbsp;:</strong>${it.task.type.name} <br><br>
+
+    <a href="/rest/task/edit/${it.task.id}"><fmt:message key="task.edit.task" /></a>
+    
 
     <form action="/rest/task/${it.task.id}/commet" method="post" >
         <div>Komentar:</div>
@@ -50,5 +40,7 @@
             </c:forEach>
         </tbody>
     </table>
+
+
 
 </my:layout>

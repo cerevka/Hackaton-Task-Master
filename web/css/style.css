@@ -13,6 +13,18 @@ h1 {
 input {
     font-size: 16px;
     width: 300px;
+    margin: 0px 0px 15px 0px !important;
+}
+
+label {
+    display: block;
+    margin: 0px;
+    font-size: 14px;
+}
+
+input.submit {
+    clear: both;
+    display: block;
 }
 
 select {
@@ -282,76 +294,4 @@ div#tasks div.progress div.task div.content div.priority.medium {
 
 div#tasks div.progress div.task div.content div.priority.height {
     color: #cc1d15;
-}
-
-form#newUser label {
-    display: block;
-    margin-bottom: 0px;
-}
-
-form#newUser input {
-    margin: 0px 0px 8px 0px;
-    display: block;
-}
-
-form#newUser input:last-of-type {
-    margin-top: 15px;
-}
-
-form#newTask label {
-    display: block;
-    margin: 0px;
-}
-
-form#newTask input {
-    display: block;
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-form#editUser label {
-    display: block;
-    margin: 0px;
-}
-
-
-form#editUser input {
-    display: block;
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-form#newType label {
-    display: block;
-    margin: 0px;
-}
-
-form#newType input {
-    display: block;
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-form#newState label {
-    display: block;
-    margin: 0px;
-}
-
-
-form#newState input {
-    display: block;
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-form#editTask label {
-    display: block;
-    margin: 0px;
-}
-
-
-form#editTask input {
-    display: block;
-    margin: 0px;
-    margin-bottom: 10px;
 }
