@@ -1,8 +1,11 @@
 package hackaton.rest;
 
 import com.sun.jersey.api.view.Viewable;
+import hackaton.controller.LoginController;
 import hackaton.controller.ParserDate;
 import hackaton.model.DAOImpl;
+import hackaton.model.Ownership;
+import hackaton.model.OwnershipType;
 import hackaton.model.Priority;
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,6 +90,7 @@ public class taskResource {
             map.put("tasks", l);
             return Response.ok(new Viewable("/tasks", map)).build();
         }
+        
     }
 
     @GET

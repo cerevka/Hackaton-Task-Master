@@ -17,11 +17,11 @@
         <input type="text" name="title" value="${it.task.title}"/>
 
         <label><fmt:message key="task.description" />:</label>
-        <input type="text" name="description" value="${it.task.description}"/>
+        <textarea name="description">${it.task.description}</textarea>
 
         <label><fmt:message key="task.deadline" />:</label>
         <fmtt:formatDate value="${it.task.deadline}" pattern="dd.MM.yyyy" var="date" />
-        <input type="text" name="deadline" value="${date}"/>
+        <input type="text" name="deadline" value="${date}" class="datepicker" />
 
         <label><fmt:message key="task.progress" />:</label>
         <input type="text" name="progress" value="${it.task.progress}"/>
