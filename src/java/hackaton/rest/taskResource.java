@@ -148,7 +148,7 @@ public class taskResource {
         
         Collections.sort(commentToTask, new Comparator<Comment>() {
             public int compare(Comment o1, Comment o2) {
-                return o1.getCreated().compareTo(o2.getCreated());
+                return - o1.getCreated().compareTo(o2.getCreated());
             }
         });
         map.put("comments", commentToTask);

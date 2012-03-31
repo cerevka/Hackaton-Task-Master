@@ -45,7 +45,7 @@
         <select name="priority">
             <option value="LOW" <c:if test="${it.task.priority == 'LOW'}" > selected="selected"</c:if>><fmt:message key="task.priority.low" /></option>
             <option value="MEDIUM" <c:if test="${it.task.priority == 'MEDIUM'}" > selected="selected"</c:if>><fmt:message key="task.priority.medium" /></option>
-            <option value="HIGH" <c:if test="${it.task.priority == 'HIGH'}" > selected="selected"</c:if>><fmt:message key="task.priority.high" /></option>
+            <option value="HEIGH" <c:if test="${it.task.priority == 'HEIGH'}" > selected="selected"</c:if>><fmt:message key="task.priority.heigh" /></option>
         </select>
         </div>
         <input type="submit" class="submit" value="<fmt:message key="task.submit.edit" />" />

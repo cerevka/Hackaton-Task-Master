@@ -39,7 +39,7 @@ public class UserToTask {
         Ownership ownership = new Ownership(null, OwnershipType.ASSIGNED, us, task);
         new DAOImpl().storeOwnership(ownership);
         Ownership own = new DAOImpl().getOwnershipForTaskByUser(task.getId(), us.getId());
-        Comment comment = new Comment(null, "Přidán uživatel" + us.getFirstname() + " " + us.getSurname(), new Date(), own, CommentType.ACTION);
+        Comment comment = new Comment(null, "Přidán uživatel " + us.getFirstname() + " " + us.getSurname(), new Date(), own, CommentType.ACTION);
         new DAOImpl().storeComment(comment);
 
         List<TaskOverview> l = new ArrayList<TaskOverview>();
