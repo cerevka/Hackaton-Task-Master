@@ -49,7 +49,7 @@
         <!-- Main menu START -->
         <div id="main-menu">
             <ul>
-                <li><a href="#" title="<fmt:message key="menu.myTasks" />" class="icon<c:if test="${active == 'myTasks'}"> active</c:if>" id="icon-my-tasks"><fmt:message key="menu.myTasks" /></a></li>
+                <li><a href="/rest/taskByUser/1" title="<fmt:message key="menu.myTasks" />" class="icon<c:if test="${active == 'myTasks'}"> active</c:if>" id="icon-my-tasks"><fmt:message key="menu.myTasks" /></a></li>
                 <li><a href="/rest/tasks" title="<fmt:message key="menu.allTasks" />" class="icon<c:if test="${active == 'allTasks'}"> active</c:if>" id="icon-all-tasks"><fmt:message key="menu.allTasks" /></a></li>
                 <li><a href="/rest/task" title="<fmt:message key="menu.newTask" />" class="icon<c:if test="${active == 'newTask'}"> active</c:if>" id="icon-new-tasks"><fmt:message key="menu.newTask" /></a></li>
                 <li><a href="/rest/users" title="<fmt:message key="menu.users" />" class="icon<c:if test="${active == 'users'}"> active</c:if>" id="icon-user"><fmt:message key="menu.users" /></a></li>
