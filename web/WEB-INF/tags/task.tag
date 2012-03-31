@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@tag description="task box" pageEncoding="UTF-8"%>
 
 <%@attribute name="task" required="true" type="hackaton.rest.TaskOverview" %>
@@ -15,10 +16,9 @@
                         ${task.description}
                     </div>
                     <div class="tags">
-                        <div class="tag"><a href="#" title="Java">Java</a></div>
-                        <div class="tag"><a href="#" title="DB">DB</a></div>
-                        <div class="tag"><a href="#" title="těžké">těžké</a></div>
-                        <div class="tag"><a href="#" title="GAE">GAE</a></div>
+                        <c:forEach items="${task.tags}" var="tag">
+                            <div class="tag"><a href="#" title="${tag.text}">${tag.text}</a></div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

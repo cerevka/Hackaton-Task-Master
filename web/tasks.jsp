@@ -8,7 +8,7 @@
 
 <my:layout title="${title}" active="allTasks">
 
-    <h1>Tasks</h1>
+    <h1><fmt:message key="heading.allTasks" /></h1>
 
     <div id="tasks">
         <c:forEach items="${it.tasks}" var="task">
