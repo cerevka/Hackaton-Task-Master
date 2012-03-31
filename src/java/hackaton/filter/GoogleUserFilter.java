@@ -30,7 +30,7 @@ public class GoogleUserFilter implements Filter {
         String thisURL = httpRequest.getRequestURI();
 
         httpResponse.setContentType("text/html");
-        if (httpRequest.getUserPrincipal() != null || thisURL.contains("login")) {
+        if (httpRequest.getUserPrincipal() != null) {
             User user = new LoginController(new DAOImpl()).getUser();
             if (user != null) {
                 filterChain.doFilter(request, response);
@@ -41,6 +41,9 @@ public class GoogleUserFilter implements Filter {
                                      "!  You can <a href=\"" +
                                      userService.createLogoutURL(thisURL) +
                                      "\">sign out</a>.</p>");
+            return;
+        } else if (thisURL.contains("login")) {
+            filterChain.doFilter(request, response);
             return;
         } else {
             String createLoginURL = userService.createLoginURL(thisURL);
