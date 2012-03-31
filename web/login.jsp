@@ -14,15 +14,19 @@
 
 <%if (user != null) {%>
 <a href="<%= userService.createLogoutURL(request.getRequestURI())%>" title="<fmt:message key="login.logout" />"></a>
+<!--
 <div>
     <strong><fmt:message key="login.username" />:&nbsp;</strong><%= user.getNickname() %>
 </div>
+-->
 <div>
-    <strong><fmt:message key="login.email" />:&nbsp;</strong>
+    <strong><fmt:message key="login.email" />:&nbsp;</strong><%= user.getEmail() %>
 </div>
+<!--
 <div>
-    <strong><fmt:message key="login.role" />:&nbsp;</strong>Majitel
+    <strong><fmt:message key="login.role" />:&nbsp;</strong><%= request.getRemoteUser() %>
 </div>
+-->
 <% } else {%>
     <a href="<%= userService.createLoginURL(request.getRequestURI())%>"></a>
 <% }%>

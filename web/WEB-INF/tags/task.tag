@@ -4,7 +4,8 @@
 <%@attribute name="task" required="true" type="hackaton.rest.TaskOverview" %>
 
 <div class="full-progress">
-            <div class="progress" style="width: ${task.progress}%">           
+            <span class="percent">${task.progress} %</span>  
+            <div class="progress" style="width: ${task.progress}%">         
                 <div class="task">
                     <div class="content">
                         <div class="state">${task.state}</div>

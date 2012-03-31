@@ -173,6 +173,13 @@ div#tasks div.full-progress {
     
 }
 
+div#tasks div.full-progress span.percent {
+    float: right;
+    margin-right: 8px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
 div#tasks div.progress {
     min-height: 100px;
     background-color: #87CC15;
@@ -180,6 +187,8 @@ div#tasks div.progress {
     margin-bottom: -10px;
     padding-top: 12px;
 }
+
+
 
 div#tasks div.progress div.state {
     float: left;
@@ -255,4 +264,29 @@ form#newUser input {
 
 form#newUser input:last-of-type {
     margin-top: 15px;
+}
+
+form#newTask label {
+    display: block;
+    margin: 0px;
+}
+
+form#newTask input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+form#editUser label {
+    display: block;
+    margin: 0px;
+}
+
+
+form#editUser input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+    width: 200px;
 }
