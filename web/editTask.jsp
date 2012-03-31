@@ -2,14 +2,16 @@
 <%@taglib tagdir="/WEB-INF/tags/" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmtt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<my:layout title="New Task" active="newTask">
-    <h1><fmt:message key="task.pageTitle" /></h1>
+<my:layout title="Edit task">
+    <h2><fmt:message key="task.edit.task" /></h2>
     <c:if test="${not empty it.error}">
         <fmt:message key="task.error" />
     </c:if>
-        
-    <form action="/rest/task" method="post" id="newTask">
+
+    <form action="/rest/task" method="post">
+        <input type="hidden" name="id" value="${it.task.id}">
         <label><fmt:message key="task.title" />:</label>
         <input type="text" name="title" value="${it.task.title}"/>
 
@@ -17,19 +19,23 @@
         <input type="text" name="description" value="${it.task.description}"/>
 
         <label><fmt:message key="task.deadline" />:</label>
-        <input type="text" name="deadline" value="${it.task.deadline}"/>
+        <fmtt:formatDate value="${it.task.deadline}" pattern="dd.MM.yyyy" var="date" />
+        <input type="text" name="deadline" value="${date}"/>
+
+        <label><fmt:message key="task.progress" />:</label>
+        <input type="text" name="progress" value="${it.task.progress}"/>
 
         <label><fmt:message key="task.state" />:</label>
         <select name="state">
             <c:forEach items="${it.states}" var="state">
-                <option value="${state.name}">${state.name}</option>
+                <option value="${state.name}" <c:if test="${it.task.state.name == state.name}">selected="select"</c:if>>${state.name}</option>
             </c:forEach>
         </select>
 
         <label><fmt:message key="task.type" />:</label>
         <select name="type">
             <c:forEach items="${it.types}" var="type">
-                <option value="${type.name}">${type.name}</option>
+                <option value="${type.name}" <c:if test="${it.task.type.name == type.name}">selected="select"</c:if>>${type.name}</option>
             </c:forEach>
         </select>
 
@@ -40,6 +46,6 @@
             <option value="HIGH"><fmt:message key="task.priority.high" /></option>
         </select>
 
-        <input type="submit" value="<fmt:message key="task.submit.new" />" />
+        <input type="submit" value="<fmt:message key="task.submit.edit" />" />
     </form>
 </my:layout>
