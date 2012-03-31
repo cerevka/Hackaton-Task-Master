@@ -59,7 +59,7 @@
                 <li><a href="#" title="<fmt:message key="menu.myTasks" />" class="icon" id="icon-my-tasks"><fmt:message key="menu.myTasks" /></a></li>
                 <li><a href="#" title="<fmt:message key="menu.allTasks" />" class="icon" id="icon-all-tasks"><fmt:message key="menu.allTasks" /></a></li>
                 <li><a href="#" title="<fmt:message key="menu.newTask" />" class="icon" id="icon-new-tasks"><fmt:message key="menu.newTask" /></a></li>
-                <li><a href="#" title="<fmt:message key="menu.users" />" class="icon" id="icon-user"><fmt:message key="menu.users" /></a></li>
+                <li><a href="/rest/users" title="<fmt:message key="menu.users" />" class="icon" id="icon-user"><fmt:message key="menu.users" /></a></li>
                 <li><a href="#" title="<fmt:message key="menu.tags" />" class="icon" id="icon-tag"><fmt:message key="menu.tags" /></a></li>
             </ul>
         </div>

@@ -7,6 +7,10 @@
 
 <my:layout title="${title}">
 
-   
+    <h1>Tasks</h1>
+
+    <div id="tasks">
+        <my:task task="${it.task}"></my:task>
+    </div>
 
 </my:layout>
