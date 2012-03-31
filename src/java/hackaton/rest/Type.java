@@ -35,6 +35,6 @@ public class Type {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response getType() {
-        return Response.ok(new Viewable("/newState")).build();
+        return Response.ok(new Viewable("/newType")).build();
     }
 }

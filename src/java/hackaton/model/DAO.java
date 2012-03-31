@@ -21,6 +21,8 @@ public interface DAO {
     public void newComment(Comment comment, Long taskId, Long userId); 
     public void newState(State state);
     public List<State> getAllStates();
+    public State getState(String name);
+    public Type getType(String name);
     public void newType(Type type);
     public List<Type> getAllTypes();
     

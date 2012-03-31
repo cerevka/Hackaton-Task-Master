@@ -127,4 +127,12 @@ public class DAOImpl extends DAOBase implements DAO {
     public List<Type> getAllTypes() {
         return ofy().query(Type.class).list();
     }
+
+    public State getState(String name) {
+        return ofy().query(State.class).filter("name =", name).get();
+    }
+
+    public Type getType(String name) {
+        return ofy().query(Type.class).filter("name =", name).get();
+    }
 }
