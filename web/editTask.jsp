@@ -4,13 +4,13 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="fmtt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<my:layout title="New Task">
-    <h2><fmt:message key="task.pageTitle" /></h2>
+<my:layout title="Edit task">
+    <h2><fmt:message key="task.edit.task" /></h2>
     <c:if test="${not empty it.error}">
         <fmt:message key="task.error" />
     </c:if>
 
-    <form action="/rest/task" method="post">
+    <form action="/rest/task" method="post" id="editTask">
         <input type="hidden" name="id" value="${it.task.id}">
         <label><fmt:message key="task.title" />:</label>
         <input type="text" name="title" value="${it.task.title}"/>
@@ -46,6 +46,6 @@
             <option value="HIGH"><fmt:message key="task.priority.high" /></option>
         </select>
 
-        <input type="submit" value="Odeslat" />
+        <input type="submit" value="<fmt:message key="task.submit.edit" />" />
     </form>
 </my:layout>

@@ -27,7 +27,7 @@ public class User {
         List<TaskOverview> l = new ArrayList<TaskOverview>(); 
      //    l.add( new TaskOverview("Vyhrát HackatOn", "Dlouhy popis", "obchodní", "probíhá", "#", 44));
         for(hackaton.model.Task t : task){
-            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress()));
+            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(), t.getPriority()));
         }
         map.put("tasks", l);
         return Response.ok(new Viewable("/user", map)).build();
@@ -62,7 +62,7 @@ public class User {
         List<TaskOverview> l = new ArrayList<TaskOverview>(); 
      //    l.add( new TaskOverview("Vyhrát HackatOn", "Dlouhy popis", "obchodní", "probíhá", "#", 44));
         for(hackaton.model.Task t : task){
-            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress()));
+            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(), t.getPriority()));
         }
         map.put("tasks", l);
         return Response.ok(new Viewable("/user", map)).build();
