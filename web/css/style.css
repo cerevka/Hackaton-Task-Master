@@ -240,3 +240,18 @@ div#tasks div.progress div.task div.content div.tags div.tag a:visited {
     padding-left: 19px;
     background: url('../graphics/icons/small_tag.png') transparent left center no-repeat;
 }
+
+form#newUser label {
+    display: block;
+    margin-bottom: 0px;
+}
+
+form#newUser input {
+    margin: 0px 0px 8px 0px;
+    display: block;
+    width: 250px;
+}
+
+form#newUser input:last-of-type {
+    margin-top: 15px;
+}
