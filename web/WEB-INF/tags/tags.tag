@@ -23,6 +23,16 @@
         letterCase: 'uppercase',
         change: function(hex, rgb) {
            $(this).parent().submit();
+           $(this).parent().children('')
+           $.ajax({
+              type: 'POST',
+              url: 'tag',
+              data: data,
+              success: success,
+              dataType: dataType
+            });
+           
+           location.reload();
         }
     });
     
