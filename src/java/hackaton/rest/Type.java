@@ -21,10 +21,15 @@ public class Type {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response createType(@FormParam("name") String name) {
         Map<String, Object> map = new HashMap<String, Object>();
-        hackaton.model.Type type = new hackaton.model.Type(name);
-        new DAOImpl().newType(type);
-        map.put("type", type);
-        return Response.ok(new Viewable("/type", map)).build();
+        if (name.equals("")) {
+            map.put("error", "type.error");
+            return Response.ok(new Viewable("/newType", map)).build();
+        } else {
+            hackaton.model.Type type = new hackaton.model.Type(name);
+            new DAOImpl().newType(type);
+            map.put("type", type);
+            return Response.ok(new Viewable("/type", map)).build();
+        }
     }
 
     @GET
