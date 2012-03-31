@@ -108,4 +108,12 @@ public class DAOImpl extends DAOBase implements DAO {
     public void newType(Type type) {
         ofy().put(type);
     }
+
+    public List<State> getAllStates() {
+        return ofy().query(State.class).list();
+    }
+
+    public List<Type> getAllTypes() {
+        return ofy().query(Type.class).list();
+    }
 }
