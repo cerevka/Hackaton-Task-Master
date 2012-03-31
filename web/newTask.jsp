@@ -9,6 +9,9 @@
         <fmt:message key="task.error" />
     </c:if>
 
+    <a href="/rest/state">Přidat stav</a>
+    <a href="/rest/type">Přidat typ</a>
+    
     <form action="/rest/task" method="post" id="newTask">
         <div class="left">
             <label><fmt:message key="task.title" />:</label>
