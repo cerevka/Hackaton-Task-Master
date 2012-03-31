@@ -1,8 +1,10 @@
 package hackaton.rest;
 
 import com.sun.jersey.api.view.Viewable;
+import hackaton.model.DAOImpl;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +22,7 @@ public class Task {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response getTask() {
-        Map<String, Object> model = new HashMap<String, Object>();
+        /*Map<String, Object> model = new HashMap<String, Object>();
         ArrayList<TaskOverview> tasks = new ArrayList<TaskOverview>();
         
         ArrayList<TagOverview> tags = new ArrayList<TagOverview>();
@@ -41,6 +43,14 @@ public class Task {
         tasks.add(task5);
         
         model.put("tasks", tasks);
+        return Response.ok(new Viewable("/tasks", model)).build();*/
+        Map<String, Object> model = new HashMap<String, Object>();
+
+        List<TaskOverview> l = new ArrayList<TaskOverview>();
+        for(hackaton.model.Task t : new DAOImpl().getAllTasks()){
+            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress()));
+        }
+        model.put("tasks", l);
         return Response.ok(new Viewable("/tasks", model)).build();
     }
     
