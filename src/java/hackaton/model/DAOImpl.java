@@ -75,8 +75,7 @@ public class DAOImpl extends DAOBase implements DAO {
         List<Ownership> ownerships = getOwnershipByTaks(taskId);
         List<Comment> comments = new ArrayList<Comment>();
         for (Ownership ownership : ownerships) {
-            List<Comment> list = ofy().query(Comment.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list();
-            comments.addAll(list);
+            comments.addAll(ofy().query(Comment.class).filter("ownership =", new Key<Ownership>(Ownership.class, ownership.getId())).list());
         }
 
         return comments;
@@ -148,6 +147,10 @@ public class DAOImpl extends DAOBase implements DAO {
 
     public void storeOwnership(Ownership ownership) {
         ofy().put(ownership);
+    }
+
+    public List<Comment> getComments() {
+        return ofy().query(Comment.class).list();
     }
 
 }

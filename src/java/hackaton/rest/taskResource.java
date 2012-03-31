@@ -8,13 +8,13 @@ import hackaton.model.CommentType;
 import hackaton.model.DAO;
 import hackaton.model.DAOImpl;
 import hackaton.model.Ownership;
-import hackaton.model.OwnershipType;
 import hackaton.model.Priority;
 import hackaton.model.State;
 import hackaton.model.Task;
 import hackaton.model.User;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -96,14 +96,12 @@ public class taskResource {
             }
             new DAOImpl().newTask(task);
             //map.put("task", task);
-            hackaton.model.User loginUser = new LoginController(new DAOImpl() ).getUser();
-          
-            Ownership ownership = new Ownership(null, OwnershipType.OWNER, loginUser, task);
-             new DAOImpl().storeOwnership(ownership);
-        
-            map.put("states", new DAOImpl().getAllStates());
-            map.put("types", new DAOImpl().getAllTypes());
-            return Response.ok(new Viewable("/newTask", map)).build();
+            List<TaskOverview> l = new ArrayList<TaskOverview>();
+            for (hackaton.model.Task t : new DAOImpl().getAllTasks()) {
+                l.add(new TaskOverview(t.getTitle(), t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/" + t.getId(), t.getProgress(), t.getPriority()));
+            }
+            map.put("tasks", l);
+            return Response.ok(new Viewable("/tasks", map)).build();
         }
         
     }

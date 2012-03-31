@@ -28,7 +28,8 @@ public interface DAO {
     public void storeTag(Tag tag);
     public void storeTag(String text, String color, User user);
     public void storeOwnership(Ownership Ownership);
-    public User getUserByEmail(String email);
     public void storeComment(Comment comment);
+    public List<Comment> getComments();
+    public User getUserByEmail(String email);
     
 }
