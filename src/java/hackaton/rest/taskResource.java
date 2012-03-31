@@ -207,8 +207,8 @@ public class taskResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Response addTag(@PathParam("id") Long id, @PathParam("tagId") Long tagId) {
         User user = new LoginController(new DAOImpl()).getUser();
-        Ownership ownership = new DAOImpl().getOwnershipForTaskByUser(tagId, user.getId());
-        Tag tag = new DAOImpl().getTag(id);
+        Ownership ownership = new DAOImpl().getOwnershipForTaskByUser(id, user.getId());
+        Tag tag = new DAOImpl().getTag(tagId);
         OwnershipTag ownershipTag = new OwnershipTag(null, new Key<Tag>(Tag.class, tag.getId()), new Key<Ownership>(Ownership.class, ownership.getId()));
         new DAOImpl().create(ownershipTag);
         return showTask(String.valueOf(id));
