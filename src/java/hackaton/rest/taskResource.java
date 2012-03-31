@@ -95,10 +95,16 @@ public class taskResource {
             }
             new DAOImpl().newTask(task);
             //map.put("task", task);
+            hackaton.model.User loginUser = new LoginController(new DAOImpl() ).getUser();
+          
+            Ownership ownership = new Ownership(null, OwnershipType.OWNER, loginUser, task);
+             new DAOImpl().storeOwnership(ownership);
+        
             map.put("states", new DAOImpl().getAllStates());
             map.put("types", new DAOImpl().getAllTypes());
             return Response.ok(new Viewable("/newTask", map)).build();
         }
+        
     }
     
     @GET

@@ -42,7 +42,7 @@
         <label for="name"><fmt:message key="form.newUser.name" />:&nbsp;</label><input type="text" id="name" name="first_name"/>
         <label for="surname"><fmt:message key="form.newUser.surname" />:&nbsp;</label><input type="text" id="surname" name="last_name" />
         <label for="email"><fmt:message key="form.newUser.email" />:&nbsp;</label><input type="text" id="email" name="email" />
-        <label for="comment"><fmt:message key="form.newUser.comment" />:&nbsp;</label><input type="text" id="comment" name="comment" />
+        <label for="comment"><fmt:message key="form.newUser.comment" />:&nbsp;</label><textarea id="comment" name="comment"></textarea>
         <input type="submit" value="<fmt:message key="form.newUser.send" />" />
     </form>
 </my:layout>
