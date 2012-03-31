@@ -10,23 +10,18 @@
 
 
 <my:layout title="User">
-   <p>
-       Jmeno: ${it.user.firstname}
-       
-   </p>
-   <p>
-        Prijmeni: ${it.user.surname}
-   </p>
-    <p>
-        Role: ${it.user.role}
-   </p>
-    <p>
-        Email: ${it.user.email}
-   </p>
-   <a href="/rest/user/edit/${it.user.id}">Editovat profil</a>
-   <c:forEach items="${it.tasks}" var="task" >
-     <div id="tasks">      
-    <my:task task="${task}"></my:task>    
-       </div>         
-   </c:forEach>
+
+    <h1>${it.user.firstname} ${it.user.surname}</h1>
+
+
+    <strong>Role:&nbsp;</strong>${it.user.role} <br>
+
+    <strong>Email:&nbsp;</strong>${it.user.email} <br><br>
+
+    <a href="/rest/user/edit/${it.user.id}">Editovat profil</a>
+    <c:forEach items="${it.tasks}" var="task" >
+        <div id="tasks">      
+            <my:task task="${task}"></my:task>    
+            </div>         
+    </c:forEach>
 </my:layout>
