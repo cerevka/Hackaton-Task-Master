@@ -211,7 +211,8 @@ public class taskResource {
         Tag tag = new DAOImpl().getTag(tagId);
         OwnershipTag ownershipTag = new OwnershipTag(null, new Key<Tag>(Tag.class, tag.getId()), new Key<Ownership>(Ownership.class, ownership.getId()));
         new DAOImpl().create(ownershipTag);
-        return showTask(String.valueOf(id));
+//        return showTask(String.valueOf(id));
+        return Response.ok().build();
     }
     
 }

@@ -5,6 +5,15 @@
 <%@taglib prefix="fmtt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <my:layout title="Task">
+    
+    <script type="text/javascript">
+        $('a.tag-ajax').live('click', function(){
+            $.get($(this).attr('href'), function(data){
+                location.reload();
+            });            
+            return false;
+        });
+    </script>
 
     <strong><fmt:message key="task.priority" />&nbsp;:</strong>${it.task.priority} <br>
 
@@ -32,7 +41,7 @@
 
     <div class="tags" style="float: right">
         <c:forEach items="${it.allTags}" var="tag">
-            <div class="tag" style="background-color: ${tag.color}"><a href="/{id}/tag/{tagId}" title="${tag.text}">${tag.text}</a></div>
+            <div class="tag" style="background-color: ${tag.color}"><a class="tag-ajax" href="/rest/task/${it.task.id}/tag/${tag.id}" title="${tag.text}">${tag.text}</a></div>
         </c:forEach>
     </div>
 
