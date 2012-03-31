@@ -4,11 +4,11 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <my:layout title="New State">
-    <h2><fmt:message key="state.title" /></h2>
+    <h1><fmt:message key="state.title" /></h1>
     <c:if test="${not empty it.error}">
         <fmt:message key="state.error" />
     </c:if>
-    <form action="/rest/state" method="post">
+    <form action="/rest/state" method="post" id="newState">
         <label><fmt:message key="state.name" /></label>
         <input type="text" name="name" />
         <input type="submit" value="<fmt:message key="state.submit.new" />" />

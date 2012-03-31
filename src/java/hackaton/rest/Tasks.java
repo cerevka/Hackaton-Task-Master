@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
  * @author Tomáš Čerevka <tomas@cerevka.cz>
  */
 @Path("/tasks")
-public class Task {
+public class Tasks {
     
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -26,8 +26,8 @@ public class Task {
         ArrayList<TaskOverview> tasks = new ArrayList<TaskOverview>();
         
         ArrayList<TagOverview> tags = new ArrayList<TagOverview>();
-        TagOverview tag1 = new TagOverview("Java", "#313131");
-        TagOverview tag2 = new TagOverview("GAE", "#550033");
+        TagOverview tag1 = new TagOverview("Java", "#64d700");
+        TagOverview tag2 = new TagOverview("GAE", "#ee3133");
         tags.add(tag1);
         tags.add(tag2);
         
@@ -48,7 +48,7 @@ public class Task {
 
         List<TaskOverview> l = new ArrayList<TaskOverview>();
         for(hackaton.model.Task t : new DAOImpl().getAllTasks()){
-            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress()));
+            l.add(new TaskOverview(t.getTitle(),t.getDescription(), t.getTypeName(), t.getStateName(), "/rest/task/"+t.getId(),t.getProgress(),t.getPriority()));
         }
         model.put("tasks", l);
         return Response.ok(new Viewable("/tasks", model)).build();

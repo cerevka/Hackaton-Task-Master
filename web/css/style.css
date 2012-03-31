@@ -10,6 +10,22 @@ h1 {
     border-bottom: 3px solid #5FB1E1;
 }
 
+input {
+    font-size: 16px;
+    width: 300px;
+}
+
+select {
+    font-size: 16px;
+    width: 300px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+div.left {
+    margin-right: 30px;
+}
+
 div#container {
     background-color: white;
     color: #222222;
@@ -173,6 +189,13 @@ div#tasks div.full-progress {
     
 }
 
+div#tasks div.full-progress span.percent {
+    float: right;
+    margin-right: 8px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
 div#tasks div.progress {
     min-height: 100px;
     background-color: #87CC15;
@@ -180,6 +203,8 @@ div#tasks div.progress {
     margin-bottom: -10px;
     padding-top: 12px;
 }
+
+
 
 div#tasks div.progress div.state {
     float: left;
@@ -227,6 +252,7 @@ div#tasks div.progress div.task div.content div.tags div.tag {
     background-color: #5FB1E1;
     padding: 4px 8px;
     border-radius: 5px;
+    margin-bottom: 8px;
 }
 
 div#tasks div.progress div.task div.content div.tags div.tag a,
@@ -241,6 +267,23 @@ div#tasks div.progress div.task div.content div.tags div.tag a:visited {
     background: url('../graphics/icons/small_tag.png') transparent left center no-repeat;
 }
 
+div#tasks div.progress div.task div.content div.priority {
+    float: right;
+    font-weight: bold;
+}
+
+div#tasks div.progress div.task div.content div.priority.low {
+    color: #87CC15;
+}
+
+div#tasks div.progress div.task div.content div.priority.medium {
+    color: #ccb415;
+}
+
+div#tasks div.progress div.task div.content div.priority.height {
+    color: #cc1d15;
+}
+
 form#newUser label {
     display: block;
     margin-bottom: 0px;
@@ -249,9 +292,66 @@ form#newUser label {
 form#newUser input {
     margin: 0px 0px 8px 0px;
     display: block;
-    width: 250px;
 }
 
 form#newUser input:last-of-type {
     margin-top: 15px;
+}
+
+form#newTask label {
+    display: block;
+    margin: 0px;
+}
+
+form#newTask input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+form#editUser label {
+    display: block;
+    margin: 0px;
+}
+
+
+form#editUser input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+form#newType label {
+    display: block;
+    margin: 0px;
+}
+
+form#newType input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+form#newState label {
+    display: block;
+    margin: 0px;
+}
+
+
+form#newState input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+form#editTask label {
+    display: block;
+    margin: 0px;
+}
+
+
+form#editTask input {
+    display: block;
+    margin: 0px;
+    margin-bottom: 10px;
 }

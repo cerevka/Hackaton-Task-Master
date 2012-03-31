@@ -1,5 +1,6 @@
 package hackaton.rest;
 
+import hackaton.model.Priority;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,19 +16,21 @@ public class TaskOverview {
     private String state;
     private String url;
     private int progress;
+    private Priority priority;
     private List<TagOverview> tags = new ArrayList<TagOverview>();
 
-    public TaskOverview(String title, String description, String type, String state, String url, int progress) {
+    public TaskOverview(String title, String description, String type, String state, String url, int progress, Priority priority) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.state = state;
         this.url = url;
         this.progress = progress;
+        this.priority = priority;
     }
     
-    public TaskOverview(String title, String description, String type, String state, String url, int progress, List<TagOverview> tags) {
-        this(title, description, type, state, url, progress);
+    public TaskOverview(String title, String description, String type, String state, String url, int progress, Priority priority, List<TagOverview> tags) {
+        this(title, description, type, state, url, progress, priority);
         this.tags = tags;
     }
 
@@ -58,4 +61,10 @@ public class TaskOverview {
     public List<TagOverview> getTags() {
         return tags;
     }
+
+    public Priority getPriority() {
+        return priority;
+    }
+    
+    
 }
