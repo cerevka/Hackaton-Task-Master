@@ -1,8 +1,11 @@
 package hackaton.rest;
 
 import com.sun.jersey.api.view.Viewable;
+import hackaton.controller.LoginController;
 import hackaton.controller.ParserDate;
 import hackaton.model.DAOImpl;
+import hackaton.model.Ownership;
+import hackaton.model.OwnershipType;
 import hackaton.model.Priority;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,10 +81,16 @@ public class taskResource {
             }
             new DAOImpl().newTask(task);
             //map.put("task", task);
+            hackaton.model.User loginUser = new LoginController(new DAOImpl() ).getUser();
+          
+            Ownership ownership = new Ownership(null, OwnershipType.OWNER, loginUser, task);
+             new DAOImpl().storeOwnership(ownership);
+        
             map.put("states", new DAOImpl().getAllStates());
             map.put("types", new DAOImpl().getAllTypes());
             return Response.ok(new Viewable("/newTask", map)).build();
         }
+        
     }
 
     @GET
