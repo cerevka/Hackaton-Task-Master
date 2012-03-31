@@ -7,9 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAOImpl extends DAOBase implements DAO {
-static{
-                ObjectifyService.register(User.class);
-        } 
+
+    static {
+        ObjectifyService.register(User.class);
+        ObjectifyService.register(Comment.class);
+        ObjectifyService.register(Ownership.class);
+        ObjectifyService.register(State.class);
+        ObjectifyService.register(Tag.class);
+        ObjectifyService.register(Type.class);
+        ObjectifyService.register(Task.class);
+    }
+
     public List<Task> getMyTasks(Long userId) {
         List<Ownership> ownership = getOwnershipByUser(userId);
         List<Task> task = new ArrayList<Task>();
@@ -95,7 +103,7 @@ static{
         List<Ownership> ownership = getOwnershipByUser(userId);
         List<Tag> tags = new ArrayList<Tag>();
 
-        if(ownership != null){
+        if (ownership != null) {
             for (Ownership ownership1 : ownership) {
                 tags.addAll(ofy().query(Tag.class).filter("ownership =", ownership1.getId()).list());
             }
@@ -110,5 +118,13 @@ static{
 
     public void newType(Type type) {
         ofy().put(type);
+    }
+
+    public List<State> getAllStates() {
+        return ofy().query(State.class).list();
+    }
+
+    public List<Type> getAllTypes() {
+        return ofy().query(Type.class).list();
     }
 }
