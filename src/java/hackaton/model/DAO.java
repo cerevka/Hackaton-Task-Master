@@ -12,7 +12,6 @@ public interface DAO {
     public List<User> getAllUsers();
     public User getUser(Long id);
     public List<Tag> getTagsForTaskByUser(Long taskId, Long userId);
-//    public void newTagToTask(Tag tag, Long taskId, Long userId);
     public List<Tag> getAllTagsToUser(User user);
     public Ownership getOwnershipForTaskByUser(Long taskId, Long userId);
     public List<Ownership> getOwnershipByUser(Long userId);
@@ -29,7 +28,8 @@ public interface DAO {
     public void storeTag(Tag tag);
     public void storeTag(String text, String color, User user);
     public void storeOwnership(Ownership Ownership);
-
+    public void storeComment(Comment comment);
+    public List<Comment> getComments();
     public User getUserByEmail(String email);
     
 }

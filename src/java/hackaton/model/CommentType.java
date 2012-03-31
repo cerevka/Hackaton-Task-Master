@@ -1,6 +1,6 @@
 package hackaton.model;
 
-enum CommentType {
+public enum CommentType {
     
     MESSAGE, ACTION
     

@@ -3,6 +3,10 @@ body {
     font-family: sans-serif;
 }
 
+#ui-datepicker-div {
+    display: none;
+}
+
 h1 {
     color: #5FB1E1;
     font-size: 32px;
@@ -214,6 +218,8 @@ div#tasks div.progress {
     border-radius: 10px 10px 50px 50px;
     margin-bottom: -10px;
     padding-top: 12px;
+    max-width: 650px;
+    
 }
 
 

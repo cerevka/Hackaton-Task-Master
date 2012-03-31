@@ -18,10 +18,10 @@
             <input type="text" name="title" value="${it.task.title}"/>
 
             <label><fmt:message key="task.description" />:</label>
-            <textarea name="description">${it.task.description}</textarea>>
+            <textarea name="description">${it.task.description}</textarea>
 
             <label><fmt:message key="task.deadline" />:</label>
-            <input type="text" name="deadline" value="${it.task.deadline}"/>
+            <input type="text" name="deadline" value="${it.task.deadline}" class="datepicker" />
         </div>
         <div>
 
@@ -43,7 +43,7 @@
             <select name="priority">
                 <option value="LOW"><fmt:message key="task.priority.low" /></option>
                 <option value="MEDIUM"><fmt:message key="task.priority.medium" /></option>
-                <option value="HIGH"><fmt:message key="task.priority.high" /></option>
+                <option value="HEIGH"><fmt:message key="task.priority.heigh" /></option>
             </select>
         </div>
         <input type="submit" value="<fmt:message key="task.submit.new" />" />

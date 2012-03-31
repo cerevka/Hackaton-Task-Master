@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<my:layout title="New Type">
+<my:layout title="New Type" active="newTask">
     <h1><fmt:message key="type.title" /></h1>
     <c:if test="${not empty it.error}">
         <fmt:message key="type.error" />
