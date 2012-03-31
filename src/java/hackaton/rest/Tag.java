@@ -1,11 +1,13 @@
 package hackaton.rest;
 
+import com.sun.jersey.api.view.Viewable;
 import hackaton.controller.LoginController;
 import hackaton.model.DAO;
 import hackaton.model.DAOImpl;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.FormParam;
@@ -28,7 +30,9 @@ public class Tag {
             tag.setColor(color);
             dao.storeTag(tag);
         }
-        return Response.noContent().build();
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("tags", dao.getAllTagsToUser(user));
+        return Response.ok(new Viewable("/tags", model)).build();
     }
     
     

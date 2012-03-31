@@ -32,7 +32,7 @@ public class GoogleUserFilter implements Filter {
         httpResponse.setContentType("text/html");
         if (httpRequest.getUserPrincipal() != null) {
             User user = new LoginController(new DAOImpl()).getUser();
-            if (user != null) {
+            if (user != null || UserServiceFactory.getUserService().isUserAdmin()) {
                 filterChain.doFilter(request, response);
                 return;
             }
